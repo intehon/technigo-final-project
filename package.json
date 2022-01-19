@@ -2,6 +2,7 @@
     "name": "final-project",
     "version": "1.0.0",
     "scripts": {
+        "type": "module",
       "postinstall": "npm install --prefix backend"
     }
   }
