@@ -50,15 +50,31 @@ const UserSchema = new mongoose.Schema({
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
+  }
+})
+
+const StaffSchema = mongoose.Schema({
+  name: {
+    type: String,
+    minlength: 2,
+    maxlength: 50,
   },
+  imageUrl: String,
+  role: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role'
+  }
+})
+
+const RoleSchema = mongoose.Schema({
+  description: String
 })
 
 const User = mongoose.model('User', UserSchema)
 
-const Staff = mongoose.model('Staff', {
-  name: String,
-  imageUrl: String
-})
+const Staff = mongoose.model('Staff', StaffSchema)
+
+const Role = mongoose.model('Role', RoleSchema)
 
 // Defines the port the app will run on. Defaults to 8080, but can be 
 // overridden when starting the server. For example:
@@ -146,11 +162,28 @@ app.post('/login', async (req, res) => {
   }
 })
 
-// endpoint for images 
+// endpoint for role
+ 
+app.post('/role', async (req, res) => {
+  const { description } = req.body
+
+  try {
+    const newRole = await new Role({ description }).save()
+    res.status(201).json({ response: newRole, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
+
+// endpoint for staff 
 
 app.post('/staff', parser.single('image'), async (req, res) => {
+  const { role } = req.body
+
   try {
-    const staff = await new Staff({ name: req.body.name, imageUrl: req.file.path }).save()
+    const queriedRole = await Role.findById(role)
+
+    const staff = await new Staff({ name: req.body.name, imageUrl: req.file.path, role: queriedRole }).save()
     res.status(200).json({
       response: staff,
       success: true
@@ -158,6 +191,15 @@ app.post('/staff', parser.single('image'), async (req, res) => {
   } catch (error) {
     res.status(400).json({ response: error, success: false })
   }
+})
+
+// get single user by id
+
+app.get('/staff/:staffId', async (req, res) => {
+  const { staffId } = req.params
+
+  const staff = await Staff.findById(staffId).populate('role')
+  res.status(200).json({ response: staff, success: true })
 })
 
 // Start the server

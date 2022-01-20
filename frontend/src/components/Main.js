@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
-import Layout from './Layout'
+import Footer from './Footer'
+import Header from './Header'
 
 const Main = () => {
     return (
-        <Layout>
-            
-        </Layout>
+        <>
+        <Header />
+            Huvudsida
+       <Footer />
+       </>
     )
 }
 
