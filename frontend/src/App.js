@@ -14,7 +14,6 @@ import Login from './components/Login'
 import NotFound from './components/NotFound'
 
 import user from './reducers/user'
-import staff from './reducers/staff'
 
 const reducer = combineReducers({
   user: user.reducer

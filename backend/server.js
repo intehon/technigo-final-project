@@ -50,20 +50,17 @@ const UserSchema = new mongoose.Schema({
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex'),
-  }
-})
-
-const StaffSchema = mongoose.Schema({
+  },
   name: {
     type: String,
     minlength: 2,
     maxlength: 50,
   },
-  imageUrl: String,
   role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Role'
-  }
+  },
+  imageUrl: String
 })
 
 const RoleSchema = mongoose.Schema({
@@ -71,8 +68,6 @@ const RoleSchema = mongoose.Schema({
 })
 
 const User = mongoose.model('User', UserSchema)
-
-const Staff = mongoose.model('Staff', StaffSchema)
 
 const Role = mongoose.model('Role', RoleSchema)
 
@@ -109,19 +104,22 @@ app.get('/', (req, res) => {
 
 // endpoint for signing up
 
-app.post('/signup', async (req, res) => {
-  const { username, password, email } = req.body
+app.post('/signup', parser.single('image'), async (req, res) => {
+  const { username, password, email, name, role, imageUrl } = req.body
 
   try {
     const salt = bcrypt.genSaltSync()
 
     if (password.length < 5) {
-      throw "password must be at least 5 characters long"
+      throw "password must be at least 5 characters long" 
     }
 
     const newUser = await new User({
       username,
       email,
+      name,
+      role,
+      imageUrl,
       password: bcrypt.hashSync(password, salt)
     }).save()
     res.status(201).json({
@@ -129,6 +127,9 @@ app.post('/signup', async (req, res) => {
         userId: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        name: newUser.name,
+        role: newUser.role,
+        imageUrl: newUser.imageUrl,
         accessToken: newUser.accessToken,
       },
       success: true,
@@ -175,17 +176,24 @@ app.post('/role', async (req, res) => {
   }
 })
 
-// endpoint for staff 
+// endpoint for users
 
-app.post('/staff', parser.single('image'), async (req, res) => {
-  const { role } = req.body
+app.get('/users', async (req, res) => {
+  const users = await User.find({}).sort({ name: 1 })
+  res.status(200).json({ response: users, success: true })
+})
+
+// endpoint to update user w. role and name
+
+app.post('/users/:userId/update', async (req, res) => {
+  const { userId } = req.params
+  const { role, name } = req.body
 
   try {
     const queriedRole = await Role.findById(role)
-
-    const staff = await new Staff({ name: req.body.name, imageUrl: req.file.path, role: queriedRole }).save()
+    const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole }, { new: true })
     res.status(200).json({
-      response: staff,
+      response: updatedUser,
       success: true
     })
   } catch (error) {
@@ -193,13 +201,32 @@ app.post('/staff', parser.single('image'), async (req, res) => {
   }
 })
 
+// endpoint to update user image
+
+app.post('/users/:userId/image', parser.single('image'), async (req, res) => {
+  res.json({ imageUrl: req.file.path, imageId: req.file.filename })
+})
+
 // get single user by id
 
-app.get('/staff/:staffId', async (req, res) => {
-  const { staffId } = req.params
+app.get('/users/:userId', async (req, res) => {
+  const { userId } = req.params
 
-  const staff = await Staff.findById(staffId).populate('role')
-  res.status(200).json({ response: staff, success: true })
+  const user = await User.findById(userId).populate('role')
+  res.status(200).json({ response: user, success: true })
+})
+
+// delete members
+
+app.delete('/users/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const deletedUser = await User.findOneAndDelete({ _id: userId })
+    res.status(200).json({ response: deletedUser, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
 })
 
 // Start the server
