@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch, batch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useSelector, useDispatch, batch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 
-import { API_URL } from "../utils/constants";
-import user from "../reducers/user";
+import { API_URL } from "../utils/constants"
+import user from "../reducers/user"
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -17,7 +17,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/login')
+      navigate('/staff')
     }
   }, [accessToken, navigate])
 
