@@ -26,6 +26,7 @@ const storage = new CloudinaryStorage({
     transformation: [{ width: 165, height: 165, crop: 'limit' }],
   },
 })
+
 const parser = multer({ storage })
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
@@ -185,13 +186,13 @@ app.get('/users', async (req, res) => {
 
 // endpoint to update user w. role and name
 
-app.post('/users/:userId/update', async (req, res) => {
+app.post('/users/:userId/update', parser.single('image'), async (req, res) => {
   const { userId } = req.params
   const { role, name } = req.body
 
   try {
     const queriedRole = await Role.findById(role)
-    const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole }, { new: true })
+    const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole, imageUrl: req.file.path, imageId: req.file.filename }, { new: true })
     res.status(200).json({
       response: updatedUser,
       success: true
@@ -203,9 +204,9 @@ app.post('/users/:userId/update', async (req, res) => {
 
 // endpoint to update user image
 
-app.post('/users/:userId/image', parser.single('image'), async (req, res) => {
-  res.json({ imageUrl: req.file.path, imageId: req.file.filename })
-})
+// app.post('/users/:userId/image', parser.single('image'), async (req, res) => {
+//   res.json({ imageUrl: req.file.path, imageId: req.file.filename })
+// })
 
 // get single user by id
 
@@ -216,7 +217,7 @@ app.get('/users/:userId', async (req, res) => {
   res.status(200).json({ response: user, success: true })
 })
 
-// delete members
+// delete users
 
 app.delete('/users/:userId', async (req, res) => {
   const { userId } = req.params
@@ -228,6 +229,12 @@ app.delete('/users/:userId', async (req, res) => {
     res.status(400).json({ response: error, success: false })
   }
 })
+
+// endpoint for images 
+
+// app.post('/images', parser.single('image'), async (req, res) => {
+// 	res.json({ imageUrl: req.file.path, imageId: req.file.filename})
+// })  
 
 // Start the server
 app.listen(port, () => {
