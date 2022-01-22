@@ -17,7 +17,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/staff')
+      navigate('/login')
     }
   }, [accessToken, navigate])
 

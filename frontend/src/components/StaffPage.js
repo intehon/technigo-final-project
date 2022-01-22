@@ -30,28 +30,36 @@ const StaffPage = () => {
     formData.append('name', name)
     formData.append('role', role)
 
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: formData
-    }
+    // const options = {
+    //     method: 'POST',
+    //     body: formData
+    // }
 
-    fetch(API_URL(`users/${userId}/update`), options)
+    fetch(API_URL(`users/${userId}/update`), {
+        method: 'POST',
+        body: formData
+    })
       .then((res) => res.json())
-      .then((json) => {
-        fetch(API_URL('staff'), options)
-        .then((res) => res.json())
-        .then((data) => {
+      .then((data) => {
+          console.log(data)
+          if (data.success) {
             batch(() => {
                 dispatch(user.actions.setUserId(data.response.userId))
                 dispatch(user.actions.setName(data.response.name))
                 dispatch(user.actions.setRole(data.response.role))
                 dispatch(user.actions.fileInput(data.ref.fileInput.current.files[0]))
+                dispatch(user.actions.setError(null))
             })
+        } else {
+            batch(() => {
+                dispatch(user.actions.setUserId(null))
+                dispatch(user.actions.setName(null))
+                dispatch(user.actions.setRole(null))
+                dispatch(user.actions.fileInput(null))
+                dispatch(user.actions.setError(data.response))
+            })
+        }
         })
-      })
   }
 
   return (
@@ -74,26 +82,26 @@ const StaffPage = () => {
             <div>
                 <input 
                 type="radio" 
-                value="Owner" 
-                checked={role === 'Owner'}
+                value="61e95a385da324dd0f0ca0cc" 
+                checked={role === '61e95a385da324dd0f0ca0cc'}
                 onChange={(e) => setRole(e.target.value)}
                 /> Owner
                 <input 
                 type="radio" 
-                value="Admin" 
-                checked={role === 'Admin'}
+                value="61e95a685da324dd0f0ca0ce" 
+                checked={role === '61e95a685da324dd0f0ca0ce'}
                 onChange={(e) => setRole(e.target.value)}
                 /> Admin
                 <input 
                 type="radio" 
-                value="Manager" 
-                checked={role === 'Manager'}
+                value="61e95acf5da324dd0f0ca0d0" 
+                checked={role === '61e95acf5da324dd0f0ca0d0'}
                 onChange={(e) => setRole(e.target.value)}
                 /> Manager
                 <input 
                 type="radio" 
-                value="Staff" 
-                checked={role === 'Staff'}
+                value="61eaf441fd9d2d3916fe0d7b" 
+                checked={role === '61eaf441fd9d2d3916fe0d7b'}
                 onChange={(e) => setRole(e.target.value)}
                 /> Staff
             </div>
