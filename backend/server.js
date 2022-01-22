@@ -186,7 +186,7 @@ app.get('/users', async (req, res) => {
 
 // endpoint to update user w. role and name
 
-app.post('/users/:userId/update', parser.single('image'), async (req, res) => {
+app.patch('/users/:userId/update', parser.single('image'), async (req, res) => {
   const { userId } = req.params
   const { role, name } = req.body
 
@@ -201,6 +201,7 @@ app.post('/users/:userId/update', parser.single('image'), async (req, res) => {
     res.status(400).json({ response: error, success: false })
   }
 })
+
 
 // endpoint to update user image
 
