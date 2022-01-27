@@ -21,7 +21,7 @@ const ProfileUpdate = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.response)
+        console.log(data)
         if (data.success) {
             setProfile({name: data.response.name, image: data.response.imageUrl, email: data.response.email, role: data.response.role})
         } else {
@@ -47,7 +47,6 @@ const ProfileUpdate = () => {
     formData.append('name', name)
     formData.append('role', role)
 
-
     // const options = {
     //     method: 'POST',
     //     body: formData
@@ -64,7 +63,7 @@ const ProfileUpdate = () => {
                 dispatch(user.actions.setUserId(data.response.userId))
                 dispatch(user.actions.setName(data.response.name))
                 dispatch(user.actions.setRole(data.response.role))
-                dispatch(user.actions.fileInput(data.ref.fileInput.current.files[0]))
+                dispatch(user.actions.setImageUrl(data.response.imageUrl))
                 dispatch(user.actions.setError(null))
             })
         } else {

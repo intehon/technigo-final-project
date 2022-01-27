@@ -6,6 +6,9 @@ const user = createSlice({
         userId: null,
         username: null,
         email: null,
+        name: null,
+        role: null,
+        imageUrl: null,
         accessToken: null,
         error: null
     },
@@ -18,6 +21,15 @@ const user = createSlice({
         },
         setEmail: (store, action) => {
             store.email = action.payload
+        },
+        setName: (store, action) => {
+            store.name = action.payload
+        },
+        setRole: (store, action) => {
+            store.role = action.payload
+        },
+        setImageUrl: (store, action) => {
+            store.imageUrl = action.payload
         },
         setAccessToken: (store, action) => {
             store.accessToken = action.payload

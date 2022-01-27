@@ -32,7 +32,6 @@ const App = () => {
           <Route path='/fnb' element={<FoodAndBeverage />} />
           <Route path='/theme' element={<CurrentTheme />} />
           <Route path='/chambre' element={<Chambre />} />
-          <Route path='/update-profile' element={<ProfileUpdate />} />
           <Route path='/staff' element={<StaffPage />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />

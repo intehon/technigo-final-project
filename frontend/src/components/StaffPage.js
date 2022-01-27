@@ -8,15 +8,20 @@ import {user} from '../reducers/user'
 
 
 const StaffPage = () => {
+    const [showProfile, setShowProfile] = useState(false)
+
+
     return (
         <>
             <div>
-                <Link to='/update-profile'>
-                    Update profile
-                </Link>
+                <button onClick={() => setShowProfile(showProfile ? false : true)}>View profile</button>
+                {showProfile && <ProfileUpdate />}
             </div>
             <div>
-                
+                <p>Ladda upp meny!</p>
+            </div>
+            <div>
+                <p>Ladda upp nya bider i galleriet!</p>
             </div>
         </>
     )
