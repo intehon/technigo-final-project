@@ -106,7 +106,7 @@ app.get('/', (req, res) => {
 // endpoint for signing up
 
 app.post('/signup', parser.single('image'), async (req, res) => {
-  const { username, password, email, name, role, imageUrl } = req.body
+  const { username, password, email } = req.body
 
   try {
     const salt = bcrypt.genSaltSync()
@@ -118,9 +118,9 @@ app.post('/signup', parser.single('image'), async (req, res) => {
     const newUser = await new User({
       username,
       email,
-      name,
-      role,
-      imageUrl,
+      // name,
+      // role,
+      // imageUrl,
       password: bcrypt.hashSync(password, salt)
     }).save()
     res.status(201).json({
@@ -128,9 +128,9 @@ app.post('/signup', parser.single('image'), async (req, res) => {
         userId: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        name: newUser.name,
-        role: newUser.role,
-        imageUrl: newUser.imageUrl,
+        // name: newUser.name,
+        // role: newUser.role,
+        // imageUrl: newUser.imageUrl,
         accessToken: newUser.accessToken,
       },
       success: true,
@@ -180,7 +180,7 @@ app.post('/role', async (req, res) => {
 // endpoint for users
 
 app.get('/users', async (req, res) => {
-  const users = await User.find({}).sort({ name: 1 })
+  const users = await User.find({}).sort({ name: 1 }).populate('role')
   res.status(200).json({ response: users, success: true })
 })
 

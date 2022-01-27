@@ -30,7 +30,7 @@ const Signup = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password, email }),
-    };
+    }
 
     fetch(API_URL('signup'), options)
       .then((res) => res.json())
@@ -51,14 +51,14 @@ const Signup = () => {
             dispatch(user.actions.setAccessToken(null))
             dispatch(user.actions.setError(data.response))
             alert("Username already taken!")
-          });
+          })
         }
-      });
+      })
 
       setUsername('')
       setEmail('')
       setPassword('')
-  };
+  }
 
   return (
     <div>

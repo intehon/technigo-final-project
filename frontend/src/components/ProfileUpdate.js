@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
@@ -8,13 +8,30 @@ import { API_URL } from '../utils/constants'
 const ProfileUpdate = () => {
   const fileInput = useRef()
   const [name, setName] = useState('')
-  const [role, setRole] = useState('Staff')
+  const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
-  const accessToken = useSelector((store) => store.user.accessToken)
   const userId = useSelector((store) => store.user.userId)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+  const [profile, setProfile] = useState({ name: '', image: '', email: '', role: '' })
+  const getProfile = () => {
+    fetch(API_URL(`users/${userId}`), {
+      method: "GET",
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.response)
+        if (data.success) {
+            setProfile({name: data.response.name, image: data.response.imageUrl, email: data.response.email, role: data.response.role})
+        } else {
+            setProfile(null)
+        }
+      });
+  };
+  useEffect(() => {
+    getProfile()
+  }, [])
 
 //   useEffect(() => {
 //       if (accessToken) {
@@ -30,6 +47,7 @@ const ProfileUpdate = () => {
     formData.append('name', name)
     formData.append('role', role)
 
+
     // const options = {
     //     method: 'POST',
     //     body: formData
@@ -41,7 +59,6 @@ const ProfileUpdate = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data)
           if (data.success) {
             batch(() => {
                 dispatch(user.actions.setUserId(data.response.userId))
@@ -51,13 +68,11 @@ const ProfileUpdate = () => {
                 dispatch(user.actions.setError(null))
             })
         } else {
-            batch(() => {
-                dispatch(user.actions.setUserId(null))
-                dispatch(user.actions.setName(null))
-                dispatch(user.actions.setRole(null))
-                dispatch(user.actions.fileInput(null))
+                // dispatch(user.actions.setUserId(null))
+                // dispatch(user.actions.setName(null))
+                // dispatch(user.actions.setRole(null))
+                // dispatch(user.actions.fileInput(null))
                 dispatch(user.actions.setError(data.response))
-            })
         }
         })
   }
@@ -112,6 +127,16 @@ const ProfileUpdate = () => {
                 </button>
             </div>
         </form>
+        <div>
+        {profile && (
+          <div>
+            <img src={profile.imageUrl} alt="profile image" />
+            <p>{profile.name}</p>
+            <p>{profile.role.description}</p>
+            <p>{profile.email}</p>
+          </div>
+        )}
+        </div>
     </div>
   )
 }

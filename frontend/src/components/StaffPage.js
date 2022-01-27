@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import ProfileUpdate from './ProfileUpdate'
-import user from '../reducers/user'
+import {user} from '../reducers/user'
 
 
 
