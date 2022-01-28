@@ -5,16 +5,15 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
 import Main from './components/Main'
 import About from './components/About'
-import FoodAndBeverage from './components/FoodAndBeverage'
-import CurrentTheme from './components/CurrentTheme'
-import Chambre from './components/Chambre'
-import StaffPage from './components/StaffPage'
+import Food from './components/Food'
+import Theme from './components/Theme'
 import Signup from './components/Signup'
+import Admin from './components/Admin'
 import Login from './components/Login'
 import NotFound from './components/NotFound'
 
 import user from './reducers/user'
-import ProfileUpdate from './components/ProfileUpdate'
+
 
 const reducer = combineReducers({
   user: user.reducer
@@ -29,10 +28,9 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/about' element={<About />} />
-          <Route path='/fnb' element={<FoodAndBeverage />} />
-          <Route path='/theme' element={<CurrentTheme />} />
-          <Route path='/chambre' element={<Chambre />} />
-          <Route path='/staff' element={<StaffPage />} />
+          <Route path='/food' element={<Food />} />
+          <Route path='/theme' element={<Theme />} />
+          <Route path='/admin' element={<Admin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/404' element={<NotFound />} />

@@ -18,7 +18,7 @@ const Login = () => {
   
     useEffect(() => {
       if (accessToken) {
-        navigate('/staff')
+        navigate('/admin')
       }
     }, [accessToken, navigate])
   

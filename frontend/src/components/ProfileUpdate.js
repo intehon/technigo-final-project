@@ -8,7 +8,7 @@ import { API_URL } from '../utils/constants'
 const ProfileUpdate = () => {
   const fileInput = useRef()
   const [name, setName] = useState('')
-  const [image, setImage] = useState('')
+  // const [image, setImage] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
   const userId = useSelector((store) => store.user.userId)
@@ -36,7 +36,7 @@ const ProfileUpdate = () => {
 
 //   useEffect(() => {
 //       if (accessToken) {
-//           navigate('/staff')
+//           navigate('/staff')s
 //       }
 //   }, [accessToken, navigate])
 
@@ -131,7 +131,7 @@ const ProfileUpdate = () => {
         <div>
         {profile && (
           <div>
-            <img src={profile.image} alt="profile image" />
+            <img src={profile.image} alt="profile" />
             <p>Name: {profile.name}</p>
             <p>Role: {profile.role.description}</p>
           </div>

@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 
 import ProfileUpdate from './ProfileUpdate'
-import {user} from '../reducers/user'
+import { Menu } from './Menu'
 
 
-
-const StaffPage = () => {
+const Admin = () => {
     const [showProfile, setShowProfile] = useState(false)
-    const [menu, setMenu] = useState('')
-
 
     return (
         <>
@@ -19,7 +14,7 @@ const StaffPage = () => {
                 {showProfile && <ProfileUpdate />}
             </div>
             <div>
-                <p>Upload menu!</p>
+                <Menu />
             </div>
             <div>
                 <p>Upload images to gallery!</p>
@@ -28,4 +23,4 @@ const StaffPage = () => {
     )
 }
 
-export default StaffPage
+export default Admin

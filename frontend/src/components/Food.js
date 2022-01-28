@@ -1,12 +1,11 @@
 import React from 'react'
 
-
-const CurrentTheme = () => {
+const Food = () => {
     return (
         <div>
-            
+
         </div>
     )
 }
 
-export default CurrentTheme
+export default Food
