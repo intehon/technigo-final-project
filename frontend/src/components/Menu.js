@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const MenuUpload = () => {
+export const Menu = () => {
+
   return (
     <div>
         

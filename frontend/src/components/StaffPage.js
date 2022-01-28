@@ -9,6 +9,7 @@ import {user} from '../reducers/user'
 
 const StaffPage = () => {
     const [showProfile, setShowProfile] = useState(false)
+    const [menu, setMenu] = useState('')
 
 
     return (
@@ -18,10 +19,10 @@ const StaffPage = () => {
                 {showProfile && <ProfileUpdate />}
             </div>
             <div>
-                <p>Ladda upp meny!</p>
+                <p>Upload menu!</p>
             </div>
             <div>
-                <p>Ladda upp nya bider i galleriet!</p>
+                <p>Upload images to gallery!</p>
             </div>
         </>
     )

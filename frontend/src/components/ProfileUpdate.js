@@ -132,8 +132,8 @@ const ProfileUpdate = () => {
         {profile && (
           <div>
             <img src={profile.image} alt="profile image" />
-            <p>{profile.name}</p>
-            <p>{profile.role.description}</p>
+            <p>Name: {profile.name}</p>
+            <p>Role: {profile.role.description}</p>
           </div>
         )}
         </div>
