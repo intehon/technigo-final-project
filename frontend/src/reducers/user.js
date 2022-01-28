@@ -8,7 +8,7 @@ const user = createSlice({
         email: null,
         name: null,
         role: null,
-        imageUrl: null,
+        image: null,
         accessToken: null,
         error: null
     },
@@ -28,8 +28,8 @@ const user = createSlice({
         setRole: (store, action) => {
             store.role = action.payload
         },
-        setImageUrl: (store, action) => {
-            store.imageUrl = action.payload
+        setImage: (store, action) => {
+            store.image = action.payload
         },
         setAccessToken: (store, action) => {
             store.accessToken = action.payload

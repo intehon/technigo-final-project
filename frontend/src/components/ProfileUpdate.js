@@ -8,6 +8,7 @@ import { API_URL } from '../utils/constants'
 const ProfileUpdate = () => {
   const fileInput = useRef()
   const [name, setName] = useState('')
+  const [image, setImage] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
   const userId = useSelector((store) => store.user.userId)
@@ -59,11 +60,12 @@ const ProfileUpdate = () => {
       .then((res) => res.json())
       .then((data) => {
           if (data.success) {
+              getProfile()
             batch(() => {
                 dispatch(user.actions.setUserId(data.response.userId))
                 dispatch(user.actions.setName(data.response.name))
                 dispatch(user.actions.setRole(data.response.role))
-                dispatch(user.actions.setImageUrl(data.response.imageUrl))
+                dispatch(user.actions.setImage(data.response.imageUrl))
                 dispatch(user.actions.setError(null))
             })
         } else {
@@ -129,10 +131,9 @@ const ProfileUpdate = () => {
         <div>
         {profile && (
           <div>
-            <img src={profile.imageUrl} alt="profile image" />
+            <img src={profile.image} alt="profile image" />
             <p>{profile.name}</p>
             <p>{profile.role.description}</p>
-            <p>{profile.email}</p>
           </div>
         )}
         </div>
