@@ -2,12 +2,15 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import listEndpoints from 'express-list-endpoints'
-import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import { uuid } from 'uuidv4'
+
+import User from './models/User.js'
+import Role from './models/Role.js'
 
 dotenv.config()
 
@@ -18,7 +21,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-const storage = new CloudinaryStorage({
+const cloudinaryStorage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'staff-avatars',
@@ -27,50 +30,71 @@ const storage = new CloudinaryStorage({
   },
 })
 
-const parser = multer({ storage })
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/')
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, uuid() + '-' + fileName)
+  },
+})
+
+
+const parser = multer({ cloudinaryStorage })
+const upload = multer({ 
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+      if (file.mimetype == 'image/png' || 'application/pdf' || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        cb(null, true)
+   } else {
+      cb(null, false)
+      return cb(new Error('Only .png, .jpg, .jpeg and .pdf format allowed!'))
+    }
+  }
+})
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise 
 
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  accessToken: {
-    type: String,
-    default: () => crypto.randomBytes(128).toString('hex'),
-  },
-  name: {
-    type: String,
-    minlength: 2,
-    maxlength: 50,
-  },
-  role: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Role'
-  },
-  imageUrl: String
-})
+// const UserSchema = new mongoose.Schema({
+//   username: {
+//     type: String,
+//     unique: true,
+//     required: true,
+//   },
+//   password: {
+//     type: String,
+//     required: true,
+//   },
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true,
+//   },
+//   accessToken: {
+//     type: String,
+//     default: () => crypto.randomBytes(128).toString('hex'),
+//   },
+//   name: {
+//     type: String,
+//     minlength: 2,
+//     maxlength: 50,
+//   },
+//   role: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Role'
+//   },
+//   imageUrl: String
+// })
 
-const RoleSchema = mongoose.Schema({
-  description: String
-})
+// const RoleSchema = mongoose.Schema({
+//   description: String
+// })
 
-const User = mongoose.model('User', UserSchema)
-
-const Role = mongoose.model('Role', RoleSchema)
+// const User = mongoose.model('User', UserSchema)
+// const Role = mongoose.model('Role', RoleSchema)
 
 // Defines the port the app will run on. Defaults to 8080, but can be 
 // overridden when starting the server. For example:
@@ -82,6 +106,15 @@ const app = express()
 // Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(express.json())
+
+//middleware to check if everything is ok before moving on (1 = all is good)
+
+app.use((req, res, next) => {
+	return (mongoose.connection.readyState === 1) 
+		? next()
+	  : res.status(503).json({ error: 'Cannot connect to server' })
+	})
+
 
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header('Authorization')
@@ -202,20 +235,17 @@ app.patch('/users/:userId/update', parser.single('image'), async (req, res) => {
   }
 })
 
-
-// endpoint to update user image
-
-// app.post('/users/:userId/image', parser.single('image'), async (req, res) => {
-//   res.json({ imageUrl: req.file.path, imageId: req.file.filename })
-// })
-
 // get single user by id
 
 app.get('/users/:userId', async (req, res) => {
   const { userId } = req.params
 
+  try {
   const user = await User.findById(userId).populate('role')
   res.status(200).json({ response: user, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false})
+  }
 })
 
 // delete users
@@ -231,11 +261,28 @@ app.delete('/users/:userId', async (req, res) => {
   }
 })
 
-// endpoint for images 
+// endpoint for file uploads
 
-// app.post('/images', parser.single('image'), async (req, res) => {
-// 	res.json({ imageUrl: req.file.path, imageId: req.file.filename})
-// })  
+app.post('/files', upload.single('file', 'image'), async (req, res) => {
+  try { 
+	  res.json({ file: req.file.path, fileId: req.file.filename})
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
+
+// endpoint to get menus
+
+app.get('/files', async (req, res) => {
+  const files = await files.find({contentType: "application/pdf"}).sort({ name: 1 })
+  res.status(200).json({ response: users, success: true })
+})
+
+// app.use((req, res, next) => {
+//   return mongoose.connection.readyState === 1
+//   ? next()
+//   : res.status(503).send({ error: 'Cannot connect to server' })
+// })
 
 // Start the server
 app.listen(port, () => {

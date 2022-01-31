@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import ProfileUpdate from './ProfileUpdate'
 import { Menu } from './Menu'
+import Theme from './Theme'
 
 
 const Admin = () => {
@@ -17,7 +18,7 @@ const Admin = () => {
                 <Menu />
             </div>
             <div>
-                <p>Upload images to gallery!</p>
+                <Theme />
             </div>
         </>
     )
