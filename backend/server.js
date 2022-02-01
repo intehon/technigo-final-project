@@ -7,10 +7,10 @@ import dotenv from 'dotenv'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
-import { uuid } from 'uuidv4'
 
 import User from './models/User.js'
 import Role from './models/Role.js'
+import { v4 } from 'uuid'
 
 dotenv.config()
 
@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, uuid() + '-' + fileName)
+    cb(null, v4() + '-' + fileName)
   },
 })
 

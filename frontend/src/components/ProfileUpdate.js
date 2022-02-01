@@ -32,6 +32,7 @@ const ProfileUpdate = () => {
   };
   useEffect(() => {
     getProfile()
+    // eslint-disable-next-line
   }, [])
 
 //   useEffect(() => {

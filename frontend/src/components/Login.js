@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { AiFillEyeInvisible, AiFillEye, icons } from 'react-icons/ai'
+import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
 import user from '../reducers/user'
 
 
-
 const Login = () => {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
   
     const accessToken = useSelector((store) => store.user.accessToken)
   
@@ -21,6 +23,8 @@ const Login = () => {
         navigate('/admin')
       }
     }, [accessToken, navigate])
+
+    const toggleShowPassword = () => setShowPassword(!showPassword)
   
     const onFormSubmit = (event) => {
       event.preventDefault()
@@ -67,10 +71,14 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required="true"
             />
+            <button type="button" onClick={toggleShowPassword}>
+              {showPassword ? <ClosedEyeIcon /> : <OpenEyeIcon />}
+            </button>
             <button
               type="submit"
               disabled={password.length < 5}
@@ -89,3 +97,11 @@ const Login = () => {
   
   export default Login
   
+  const ClosedEyeIcon = styled(AiFillEyeInvisible)`
+    color: #fff;
+    font-size: 22px;
+  `
+  const OpenEyeIcon = styled(AiFillEye)`
+    color: #fff;
+    font-size: 22px;
+  `
