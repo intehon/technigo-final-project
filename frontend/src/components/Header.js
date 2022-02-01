@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <HeaderBox>
             <img src={logo} alt="logo" />
+            <hr></hr>
         </HeaderBox>
     )
 }   
