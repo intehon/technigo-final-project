@@ -14,7 +14,11 @@ import Admin from './components/Admin'
 import Login from './components/Login'
 import NotFound from './components/NotFound'
 
+import './index.css'
+
 import user from './reducers/user'
+// import Header from './components/Header'
+// import Footer from './components/Footer'
 import Layout from './components/Layout/Layout'
 
 const reducer = combineReducers({
@@ -43,6 +47,7 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
+            {/* <Header /> */}
             <Route path='/' element={<Main />} />
             <Route path='/about' element={<About />} />
             <Route path='/food-and-wine' element={<Food />} />
@@ -51,6 +56,7 @@ const App = () => {
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/404' element={<NotFound />} />
+            {/* <Footer /> */}
           </Routes>
         </Layout>
       </BrowserRouter>

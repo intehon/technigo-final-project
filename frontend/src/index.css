@@ -1,5 +1,6 @@
 body {
-  margin: 20;
+  /* font-family: 'Berling';
+  src: local('Berling'), url(./assets/fonts/Berling.ttf) format('ttf'); */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

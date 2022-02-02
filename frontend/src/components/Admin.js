@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import ProfileUpdate from './ProfileUpdate'
 import { Menu } from './Menu'
-import Theme from './Theme'
+import UpdateTheme from './UpdateTheme'
 
 import user from '../reducers/user'
 import { useNavigate } from 'react-router-dom'
@@ -38,7 +38,7 @@ const Admin = () => {
                 <Menu />
             </div>
             <div>
-                <Theme />
+                <UpdateTheme />
             </div>
         </>
     )

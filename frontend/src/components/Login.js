@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { AiFillEyeInvisible, AiFillEye, icons } from 'react-icons/ai'
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'

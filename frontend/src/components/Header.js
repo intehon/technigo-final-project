@@ -5,14 +5,19 @@ import styled from 'styled-components'
 const Header = () => {
     return (
         <HeaderBox>
-            <img src={logo} alt="logo" />
-            <hr></hr>
+            <HeaderImg src={logo} alt="logo" />
         </HeaderBox>
     )
 }   
 
 const HeaderBox = styled.div`
-    justify-content: center;
+    display: grid;
+    place-items: center;
+`
+
+const HeaderImg = styled.img`
+    /* height: 90%; */
+    width: 60%;
 `
 
 
