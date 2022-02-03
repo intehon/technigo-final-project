@@ -16,7 +16,8 @@ const Main = () => {
                             <p>Woodstockholm Matbar</p>
                             <p>Mosebacke torg 9</p>
                             <p>Monday - Sunday 17 – 23</p>
-                            <p><PhoneIcon /> +46(0)8-369 399</p>
+                            <PhoneSpan><PhoneIcon /><Link href="tel:18005551212"> +46(0)8-369 399</Link></PhoneSpan>
+                            <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
                         </TextContainer>
                         <Button 
                         href="https://app.bokabord.se/reservation/?hash=6f4e22917c2a3e8aefdd1332215dbb5c"
@@ -66,14 +67,7 @@ const TextContainer = styled.div`
     background: white;
     opacity: 0.8;
     border-radius: 15px;
-`
-
-const SmallTextContainer = styled.div`
-    display: flex;
-    /* width: 250px; */
-    /* align-items: center; */
-    font-style: italic;
-    letter-spacing: .5px;    
+    font-size: 16px;
 `
 
 const PhoneIcon = styled(BiPhone)`
@@ -92,6 +86,18 @@ const Button = styled.a`
     letter-spacing: 1px;
     border: 1px white;
     text-decoration: none;
+`
+
+const Link = styled.a`
+    color: orange;
+    text-decoration: none;
+    &:hover {
+        color: red
+    }
+`
+
+const PhoneSpan = styled.span`
+    padding: 10px;
 `
 
 export default Main
