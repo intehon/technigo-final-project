@@ -6,6 +6,8 @@
         "postinstall": "npm install --prefix backend"
     },
     "dependencies": {
+        "@emotion/react": "^11.7.1",
+        "@emotion/styled": "^11.6.0",
         "@mui/material": "^5.4.0",
         "@mui/styled-engine-sc": "^5.3.0",
         "body-parser": "^1.19.1",
