@@ -1,20 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
 
 import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
 
 const ProfileUpdate = () => {
-  const fileInput = useRef()
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
   const userId = useSelector((store) => store.user.userId)
 
   const dispatch = useDispatch()
 
-  const [profile, setProfile] = useState({ name: '', image: '', email: '', role: '' })
+  const [profile, setProfile] = useState({ name: '', email: '', role: '' })
   const getProfile = () => {
     fetch(API_URL(`users/${userId}`), {
       method: "GET",
@@ -23,12 +22,12 @@ const ProfileUpdate = () => {
       .then(data => {
         console.log(data)
         if (data.success) {
-            setProfile({name: data.response.name, image: data.response.imageUrl, email: data.response.email, role: data.response.role})
+            setProfile({name: data.response.name, email: data.response.email, role: data.response.role})
         } else {
             setProfile(null)
         }
-      });
-  };
+      })
+  }
   useEffect(() => {
     getProfile()
     // eslint-disable-next-line
@@ -40,28 +39,31 @@ const ProfileUpdate = () => {
 //       }
 //   }, [accessToken, navigate])
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault()
 
-    const formData = new FormData()
-    formData.append('image', fileInput.current.files[0])
-    formData.append('name', name)
-    formData.append('role', role)
+    const options = {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        role: role,
+        email: email
+      })
+    }
 
-    fetch(API_URL(`users/${userId}/update`), {
-        method: 'PATCH',
-        body: formData
-    })
+    fetch(API_URL(`users/${userId}/update`), options)
       .then((res) => res.json())
       .then((data) => {
           if (data.success) {
               getProfile()
             batch(() => {
-                dispatch(user.actions.setUserId(data.response.userId))
-                dispatch(user.actions.setName(data.response.name))
-                dispatch(user.actions.setRole(data.response.role))
-                dispatch(user.actions.setImage(data.response.imageUrl))
-                dispatch(user.actions.setError(null))
+              dispatch(user.actions.setName(data.response.name))
+              dispatch(user.actions.setRole(data.response.role))
+              dispatch(user.actions.setEmail(data.response.email))
+              dispatch(user.actions.setError(null))
             })
         } else {
                 // dispatch(user.actions.setUserId(null))
@@ -78,37 +80,23 @@ const ProfileUpdate = () => {
         <form onSubmit={handleFormSubmit}>
             <div>
                 <label>
-                    Profile Image
-                    <input type="file" ref={fileInput} />
-                </label>
-            </div>
-
-            <div>
-                <label>
                     Staff Name
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
             </div>
-
             <div>
-                <input 
-                type="radio" 
-                value="61e95a385da324dd0f0ca0cc" 
-                checked={role === '61e95a385da324dd0f0ca0cc'}
-                onChange={(e) => setRole(e.target.value)}
-                /> Owner
+                <label>
+                    Email
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </label>
+            </div>
+            <div>
                 <input 
                 type="radio" 
                 value="61e95a685da324dd0f0ca0ce" 
                 checked={role === '61e95a685da324dd0f0ca0ce'}
                 onChange={(e) => setRole(e.target.value)}
                 /> Admin
-                <input 
-                type="radio" 
-                value="61e95acf5da324dd0f0ca0d0" 
-                checked={role === '61e95acf5da324dd0f0ca0d0'}
-                onChange={(e) => setRole(e.target.value)}
-                /> Manager
                 <input 
                 type="radio" 
                 value="61eaf441fd9d2d3916fe0d7b" 
@@ -126,8 +114,8 @@ const ProfileUpdate = () => {
         <div>
         {profile && (
           <div>
-            <img src={profile.image} alt="profile" />
             <p>Name: {profile.name}</p>
+            <p>Email: {profile.email} </p>
             <p>Role: {profile.role.description}</p>
           </div>
         )}

@@ -50,9 +50,9 @@ const Login = () => {
             })
           } else {
             batch(() => {
-              dispatch(user.actions.setUserId(null))
-              dispatch(user.actions.setUserName(null))
-              dispatch(user.actions.setAccessToken(null))
+              alert ('Wrong username or password')
+              setPassword('')
+              // dispatch(user.actions.setUserData(null))
               dispatch(user.actions.setError(data.response))
             })
           }
@@ -75,7 +75,6 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required="true"
             />
             <button type="button" onClick={toggleShowPassword}>
               {showPassword ? <ClosedEyeIcon /> : <OpenEyeIcon />}

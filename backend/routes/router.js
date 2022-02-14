@@ -173,13 +173,13 @@ router.post('/role', async (req, res) => {
 
 // endpoint to update user w. role and name
 
-router.patch('/users/:userId/update', parser.single('image'), async (req, res) => {
+router.patch('/users/:userId/update', async (req, res) => {
   const { userId } = req.params
-  const { role, name } = req.body
+  const { role, name, email } = req.body
 
   try {
     const queriedRole = await Role.findById(role)
-    const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole, imageUrl: req.file.path, imageId: req.file.filename }, { new: true })
+    const updatedUser = await User.findByIdAndUpdate( userId, { name, email, role: queriedRole }, { new: true })
     res.status(200).json({
       response: updatedUser,
       success: true
