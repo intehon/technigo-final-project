@@ -1,14 +1,14 @@
 import express from 'express'
 import listEndpoints from 'express-list-endpoints'
 import mongoose from 'mongoose'
-import bcrypt from 'bcrypt-nodejs'
+import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
-import User from '../models/User'
-import Role from '../models/Role'
+import User from '../models/User.js'
+import Role from '../models/Role.js'
 
 const router = express.Router()
 
@@ -21,7 +21,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-const cloudinaryStorage = new CloudinaryStorage({
+const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'staff-avatars',
@@ -30,21 +30,22 @@ const cloudinaryStorage = new CloudinaryStorage({
   },
 })
 
-const storage = multer.diskStorage({
+const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/')
   },
   filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    const fileName = file.originalname.toLowerCase().split(' ').join('-')
     cb(null, uuid() + '-' + fileName)
   },
 })
 
-const parser = multer({ cloudinaryStorage })
+const parser = multer({ storage })
+
 const upload = multer({ 
-  storage: storage,
+  storage: fileStorage,
   fileFilter: (req, file, cb) => {
-      if (file.mimetype == 'image/png' || 'application/pdf' || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      if (file.mimetype == 'image/png' || file.mimetype == 'application/pdf' || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
         cb(null, true)
    } else {
       cb(null, false)
@@ -94,9 +95,6 @@ const authenticateUser = async (req, res, next) => {
       const newUser = await new User({
         username,
         email,
-        // name,
-        // role,
-        // imageUrl,
         password: bcrypt.hashSync(password, salt)
       }).save()
       res.status(201).json({
@@ -104,9 +102,6 @@ const authenticateUser = async (req, res, next) => {
           userId: newUser._id,
           username: newUser.username,
           email: newUser.email,
-          // name: newUser.name,
-          // role: newUser.role,
-          // imageUrl: newUser.imageUrl,
           accessToken: newUser.accessToken,
         },
         success: true,
@@ -133,6 +128,11 @@ const authenticateUser = async (req, res, next) => {
             accessToken: user.accessToken,
           },
           success: true,
+        })
+      } else {
+        res.status(404).json({
+          response: 'Invalid email or password',
+          success: false,
         })
       }
     } catch (error) {

@@ -16,7 +16,7 @@ const Main = () => {
                             <p>Woodstockholm Matbar</p>
                             <p>Mosebacke torg 9</p>
                             <p>Monday - Sunday 17 – 23</p>
-                            <PhoneSpan><PhoneIcon /><Link href="tel:18005551212"> +46(0)8-369 399</Link></PhoneSpan>
+                            <PhoneSpan><PhoneIcon /><Link href="tel:+468369399" aria-label="+ 4 6. 8. 3 6 9. 3 9 9."> +46(0)8-369 399</Link></PhoneSpan>
                             <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
                         </TextContainer>
                         <Button 
@@ -37,12 +37,12 @@ const Main = () => {
 
 const BackDrop = styled.main`
     background-image: url(${MainImg});
-    width: 700px;
-    height: 800px;
+    /* width: 700px;
+    height: 800px; */
     background-size: cover;
     background-position: center;
-    /* width: 2000px;
-    height: 2000px; */
+    width: 800px;
+    height: 900px;
 `
 
 const Wrapper = styled.div`
@@ -77,7 +77,7 @@ const PhoneIcon = styled(BiPhone)`
 
 const Button = styled.a`
     border-radius: 35px;
-    background-color: #ffb347;
+    background-color: red;
     color: white;
     padding: 12px 27px;
     margin: 10px;

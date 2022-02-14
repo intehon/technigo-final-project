@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import ProfileUpdate from './ProfileUpdate'
 import { Menu } from './Menu'
 import UpdateTheme from './UpdateTheme'
 
@@ -10,13 +9,16 @@ import { useNavigate } from 'react-router-dom'
 
 const Admin = () => {
     const accessToken = useSelector((store) => store.user.accessToken)
-    const [showProfile, setShowProfile] = useState(false)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const logout = () => {
         dispatch(user.actions.setAccessToken(''))
+        dispatch(user.actions.setEmail(''))
+        dispatch(user.actions.setUserId(''))
+        dispatch(user.actions.setUserName(''))
+        dispatch(user.actions.setName(''))
     }
 
     useEffect(() => {
@@ -29,10 +31,6 @@ const Admin = () => {
         <>  
             <div>
                 <button onClick={logout}>Sign out!</button>
-            </div>
-            <div>
-                <button onClick={() => setShowProfile(showProfile ? false : true)}>View profile</button>
-                {showProfile && <ProfileUpdate />}
             </div>
             <div>
                 <Menu />

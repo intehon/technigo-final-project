@@ -8,7 +8,6 @@ import { API_URL } from '../utils/constants'
 const ProfileUpdate = () => {
   const fileInput = useRef()
   const [name, setName] = useState('')
-  // const [image, setImage] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
   const userId = useSelector((store) => store.user.userId)
@@ -48,11 +47,6 @@ const ProfileUpdate = () => {
     formData.append('image', fileInput.current.files[0])
     formData.append('name', name)
     formData.append('role', role)
-
-    // const options = {
-    //     method: 'POST',
-    //     body: formData
-    // }
 
     fetch(API_URL(`users/${userId}/update`), {
         method: 'PATCH',
