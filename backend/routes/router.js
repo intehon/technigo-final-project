@@ -68,7 +68,7 @@ const authenticateUser = async (req, res, next) => {
       if (user) {
         next()
       } else {
-        res.status(401).json({ response: "please login", success: false })
+        res.status(401).json({ response: "Please login", success: false })
       }
     } catch (error) {
       res.status(400).json({ response: error, success: false })
@@ -88,8 +88,12 @@ const authenticateUser = async (req, res, next) => {
     try {
       const salt = bcrypt.genSaltSync()
   
-      if (password.length < 5) {
-        throw "password must be at least 5 characters long" 
+      if (password.length < 8) {
+        throw "Password must be at least 8 characters long" 
+      }
+
+      if (!email.includes('@')) {
+        throw "Email must include an @"
       }
   
       const newUser = await new User({
@@ -140,71 +144,76 @@ const authenticateUser = async (req, res, next) => {
     }
   })
 
-
-// endpoint for role
- 
-router.post('/role', async (req, res) => {
-    const { description } = req.body
-  
-    try {
-      const newRole = await new Role({ description }).save()
-      res.status(201).json({ response: newRole, success: true })
-    } catch (error) {
-      res.status(400).json({ response: error, success: false })
-    }
-  })
-  
-
 // endpoint for users
 
 router.get('/users', async (req, res) => {
     const users = await User.find({}).sort({ name: 1 }).populate('role')
     res.status(200).json({ response: users, success: true })
   })
+
+
+// endpoint for admin
+
+router.get('/admin', authenticateUser)
   
-  // endpoint to update user w. role and name
-  
-  router.patch('/users/:userId/update', parser.single('image'), async (req, res) => {
-    const { userId } = req.params
-    const { role, name } = req.body
-  
-    try {
-      const queriedRole = await Role.findById(role)
-      const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole, imageUrl: req.file.path, imageId: req.file.filename }, { new: true })
-      res.status(200).json({
-        response: updatedUser,
-        success: true
-      })
-    } catch (error) {
-      res.status(400).json({ response: error, success: false })
-    }
-  })
-  
-  // get single user by id
-  
-  router.get('/users/:userId', async (req, res) => {
-    const { userId } = req.params
-  
-    try {
-    const user = await User.findById(userId).populate('role')
-    res.status(200).json({ response: user, success: true })
-    } catch (error) {
-      res.status(400).json({ response: error, success: false})
-    }
-  })
-  
-  // delete users
-  
-  router.delete('/users/:userId', async (req, res) => {
-    const { userId } = req.params
-  
-    try {
-      const deletedUser = await User.findOneAndDelete({ _id: userId })
-      res.status(200).json({ response: deletedUser, success: true })
-    } catch (error) {
-      res.status(400).json({ response: error, success: false })
-    }
-  })
+
+// endpoint for role
+ 
+router.post('/role', async (req, res) => {
+  const { description } = req.body
+
+  try {
+    const newRole = await new Role({ description }).save()
+    res.status(201).json({ response: newRole, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
+
+
+// endpoint to update user w. role and name
+
+router.patch('/users/:userId/update', parser.single('image'), async (req, res) => {
+  const { userId } = req.params
+  const { role, name } = req.body
+
+  try {
+    const queriedRole = await Role.findById(role)
+    const updatedUser = await User.findByIdAndUpdate( userId, { name, role: queriedRole, imageUrl: req.file.path, imageId: req.file.filename }, { new: true })
+    res.status(200).json({
+      response: updatedUser,
+      success: true
+    })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
+
+// get single user by id
+
+router.get('/users/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  try {
+  const user = await User.findById(userId).populate('role')
+  res.status(200).json({ response: user, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false})
+  }
+})
+
+// delete users
+
+router.delete('/users/:userId', async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const deletedUser = await User.findOneAndDelete({ _id: userId })
+    res.status(200).json({ response: deletedUser, success: true })
+  } catch (error) {
+    res.status(400).json({ response: error, success: false })
+  }
+})
 
   
 // endpoint for file uploads

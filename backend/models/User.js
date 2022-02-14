@@ -6,10 +6,13 @@ const UserSchema = new mongoose.Schema({
       type: String,
       unique: true,
       required: true,
+      minlength: 3,
+      maxlength: 15,
     },
     password: {
       type: String,
       required: true,
+      minlength: 8,
     },
     email: {
       type: String,
@@ -29,7 +32,6 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Role'
     },
-    imageUrl: String
   })
 
 const User = mongoose.model('User', UserSchema)
