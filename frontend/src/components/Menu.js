@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import ModalImage from 'react-modal-image'
 
 import { API_URL } from '../utils/constants'
 
 const Menu = () => {
 
     const [menu, setMenu] = useState('')
+    const [imgSize, setImgSize] = useState("600px")
+
+    const toggleImgSize = () => {
+      if (imgSize === "600px") {
+        setImgSize("1100px")
+      } else {
+        setImgSize("600px")
+      }
+    }
+
 
 
     const getMenu = () => {
@@ -29,23 +38,23 @@ const Menu = () => {
 
 
   return (
-    <ImageContainer>{menu && <ModalImage
-      small={menu}
-      large={menu}
-      alt="Food menu"
-      hideDownload={true}
-      hideZoom={true} />}</ImageContainer>
+    <ImageContainer onClick={toggleImgSize}>
+     <Image style={{ width: imgSize }} src={menu} alt="Menu" />
+    </ImageContainer>
   )
 }
 
 const ImageContainer = styled.div`
+    display: flex;
     text-align: center;
-    /* max-width: 600px; */
 `
 
-// const MenuImage = styled.img`
-//   display: inline-block;
-//   max-width: 600px;
-// `
+const Image = styled.img`
+    display: inline-block;
+    justify-content: center;
+    cursor: -moz-zoom-in; 
+    cursor: -webkit-zoom-in; 
+    cursor: zoom-in;
+`
 
-export default Menu
+export default Menu 

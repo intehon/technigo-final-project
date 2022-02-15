@@ -1,22 +1,30 @@
 import React from 'react'
 import { BsInstagram } from 'react-icons/bs'
+import { HiOutlineMail } from 'react-icons/hi'
 import styled from 'styled-components'
 
 
 const Footer = () => {
     return (
         <FooterContainer>
-            <a href="https://www.instagram.com/woodstockholm/">
-                <InstagramIcon />
-            </a>
+            <IconContainer>
+                {/* <a href="mailto:reservations@woodstockholm.com">
+                    <EmailIcon />
+                </a> */}
+                <a href="https://www.instagram.com/woodstockholm/">
+                    <InstagramIcon />
+                </a>
+            </IconContainer>
         </FooterContainer>
     )
 }
 
 const FooterContainer = styled.div`
     display: flex;
-    flex-direction: row;
-    align-self: flex-end;
+`
+
+const IconContainer = styled.div`
+    display: flex;
 `
 
 const InstagramIcon = styled(BsInstagram)`
@@ -26,5 +34,13 @@ const InstagramIcon = styled(BsInstagram)`
         font-size: 25px;
     }
 `
+
+// const EmailIcon = styled(HiOutlineMail)`
+//     color: #000;    
+//     font-size: 25px;
+//     &:hover {
+//         font-size: 28px;
+//     }
+// `
 
 export default Footer

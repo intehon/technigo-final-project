@@ -32,6 +32,7 @@ const Admin = () => {
     return (
         <>  
             <Wrapper>
+                <button onClick={logout}>Sign out!</button>
                 <ButtonContainer>
                 <button onClick={() => setShowProfile(showProfile ? false : true)}>View profile</button>
                 {showProfile && <ProfileUpdate />}

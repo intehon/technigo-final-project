@@ -21,8 +21,6 @@ const Theme = () => {
     .then((json) => setTheme(json))
   }
 
-  console.log(theme)
-
   useEffect(() => {
     getTheme()
   }, [])
@@ -31,16 +29,18 @@ const Theme = () => {
   return (
     <Wrapper>
         <HeaderContainer>
-        {theme && <h2>{theme.response[0].name}</h2>}
+        {theme && <Header>{theme.response[0].name}</Header>}
       </HeaderContainer>
-      <ImageContainer>
-          {theme && <ThemeImage src={theme.response[0].imageUrl} alt="current theme" />}
-      </ImageContainer>
-      <TextWrapper>
-        <TextContainer>
-            {theme && <p>{theme.response[0].description}</p>}
-        </TextContainer>
-      </TextWrapper>
+      <ContentWrapper>
+        <ImageContainer>
+            {theme && <ThemeImage src={theme.response[0].imageUrl} alt="current theme" />}
+        </ImageContainer>
+        <TextWrapper>
+          <TextContainer>
+              {theme && <p>{theme.response[0].description}</p>}
+          </TextContainer>
+        </TextWrapper>
+      </ContentWrapper>
     </Wrapper>
   ) 
 }
@@ -48,7 +48,14 @@ const Theme = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 900px;
+`
+
+const ContentWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 1rem;
+    align-items: center; // Maybe remove this?
 `
 
 const TextWrapper = styled.div`
@@ -64,15 +71,27 @@ const TextContainer = styled.div`
 
 const ImageContainer = styled.div`
   text-align: center;
+
 `
 
 const ThemeImage = styled.img`
   display: inline-block;
-  max-width: 600px;
+  max-width: 400px;
+  border-radius: 1%;
+  /* border-style: double;  
+  border-color: pink; */
 `
+
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
+`
+
+const Header = styled.h1`
+  font-size: 22px;
+  text-transform: uppercase;
+  font-style: italic;
+  padding-bottom: 20px;
 `
 
 export default Theme

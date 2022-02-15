@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 
 import user from '../reducers/user'
+import ui from '../reducers/ui'
 import { API_URL } from '../utils/constants'
 
 const ProfileUpdate = () => {
@@ -9,12 +10,12 @@ const ProfileUpdate = () => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
+  const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
 
   const userId = useSelector((store) => store.user.userId)
 
   const dispatch = useDispatch()
 
-  const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
   const getProfile = () => {
     fetch(API_URL(`users/${userId}`), {
       method: "GET",
@@ -34,14 +35,9 @@ const ProfileUpdate = () => {
     // eslint-disable-next-line
   }, [])
 
-//   useEffect(() => {
-//       if (accessToken) {
-//           navigate('/staff')s
-//       }
-//   }, [accessToken, navigate])
-
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+    dispatch(ui.actions.setLoading(true))
 
     const options = {
       method: 'PATCH',
@@ -72,6 +68,7 @@ const ProfileUpdate = () => {
                 dispatch(user.actions.setError(data.response))
         }
         })
+        dispatch(ui.actions.setLoading(false))
   }
 
   return (

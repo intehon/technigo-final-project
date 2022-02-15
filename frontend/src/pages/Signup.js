@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { API_URL } from "../utils/constants"
 import user from "../reducers/user"
+import ui from '../reducers/ui'
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -22,7 +23,8 @@ const Signup = () => {
   }, [accessToken, navigate])
 
   const onFormSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
+    dispatch(ui.actions.setLoading(true))
 
     const options = {
       method: "POST",
@@ -53,6 +55,7 @@ const Signup = () => {
             alert("Username already taken!")
           })
         }
+        dispatch(ui.actions.setLoading(false))
       })
 
       setUsername('')
@@ -86,7 +89,7 @@ const Signup = () => {
           />
           <button
             type="submit"
-            disabled={password.length < 5}
+            disabled={password.length < 8}
             onClick={onFormSubmit}
           >
             Submit

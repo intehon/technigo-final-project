@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
@@ -9,8 +10,11 @@ const ThemeUpdate = () => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
+  const dispatch = useDispatch()
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
     formData.append('name', name)
@@ -24,7 +28,6 @@ const ThemeUpdate = () => {
     .then((json) => {
       console.log(json)
     })
-
   }
 
   const handleFileChange = (e) => {

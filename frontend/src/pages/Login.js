@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
 import user from '../reducers/user'
+import ui from '../reducers/ui'
 
 
 const Login = () => {
@@ -28,6 +29,7 @@ const Login = () => {
   
     const onFormSubmit = (event) => {
       event.preventDefault()
+      dispatch(ui.actions.setLoading(true))
   
       const options = {
         method: 'POST',
@@ -40,7 +42,6 @@ const Login = () => {
       fetch(API_URL('login'), options)
         .then((res) => res.json())
         .then((data) => {
-          console.log('Data', data)
           if (data.success) {
             batch(() => {
               dispatch(user.actions.setUserId(data.response.userId))
@@ -49,13 +50,11 @@ const Login = () => {
               dispatch(user.actions.setError(null))
             })
           } else {
-            batch(() => {
               alert ('Wrong username or password')
               setPassword('')
-              // dispatch(user.actions.setUserData(null))
               dispatch(user.actions.setError(data.response))
-            })
           }
+          dispatch(ui.actions.setLoading(false))
         })
     }
   
