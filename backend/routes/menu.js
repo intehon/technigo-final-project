@@ -2,13 +2,13 @@ import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import express from 'express'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 import Menu from '../models/Menu.js'
 
 const router = express.Router()
 
-dotenv.config()
+// dotenv.config()
 
 const cloudinary = cloudinaryFramwork.v2
 cloudinary.config({

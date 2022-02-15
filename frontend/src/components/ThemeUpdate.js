@@ -4,7 +4,6 @@ import { API_URL } from '../utils/constants'
 const ThemeUpdate = () => {
   const fileInput = useRef()
   const [image, setImage] = useState({ preview: '', data: ''})
-  const [status, setStatus] = useState('')
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
@@ -15,7 +14,7 @@ const ThemeUpdate = () => {
     formData.append('name', name)
     formData.append('description', description)
 
-    fetch(API_URL('files'), {
+    fetch(API_URL('themes'), {
       method: 'POST',
       body: formData
     })
@@ -24,7 +23,6 @@ const ThemeUpdate = () => {
       console.log(json)
     })
 
-  //   if (response) setStatus(response.statusText)
   }
 
   const handleFileChange = (e) => {
@@ -56,7 +54,6 @@ const ThemeUpdate = () => {
         </div>
         <button type='submit'>Submit</button>
       </form>
-      {status && <h4>{status}</h4>}
     </div>
   )  
 }

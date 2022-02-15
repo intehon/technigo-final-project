@@ -15,7 +15,7 @@ const Theme = () => {
       }
     }
 
-    fetch(API_URL('files'), options)
+    fetch(API_URL('themes'), options)
     .then((res) => res.json())
     .then((json) => setTheme(json))
   }
