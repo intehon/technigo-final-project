@@ -20,10 +20,10 @@ const Main = () => {
                             <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
                         </TextContainer>
                         <Button 
-                        href="https://app.bokabord.se/reservation/?hash=6f4e22917c2a3e8aefdd1332215dbb5c"
+                        href="https://app.bokabord.se/reservation/?hash=6f4e22917c2a3e8aefdd1332215dbb5c" rel="noopener noreferrer" target="_blank"
                         >Reservations</Button>
                         <Button 
-                        href="https://gansub.com/s/9J7kb0MD/ "
+                        href="https://gansub.com/s/9J7kb0MD/" rel="noopener noreferrer" target="_blank"
                         >Newsletter</Button>
                     </Container>
                 {/* <Container>
