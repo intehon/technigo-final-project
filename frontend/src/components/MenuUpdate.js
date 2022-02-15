@@ -35,13 +35,13 @@ const MenuUpdate = () => {
   return (
     <div className='App'>
     <h1>Update menu</h1>
-    {menu.preview && <embed src={menu.preview} height='400' width='400' alt='preview' />}
+    {menu.preview && <img src={menu.preview} height='400' width='400' alt='preview' />}
     <hr></hr>
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor='file'>File</label>
         <input type='file' name='file' ref={fileInput} onChange={handleFileChange} ></input>
-        <p>Only .pdf-files supported</p>
+        <p>Please convert .pdf to .jpeg, .jpg or .png before proceeding</p>
       </div>
       <button type='submit'>Submit</button>
     </form>

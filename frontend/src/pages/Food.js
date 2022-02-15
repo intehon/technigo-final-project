@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Document } from 'react-pdf'
 
 import { API_URL } from '../utils/constants'
 
@@ -25,11 +24,15 @@ const Food = () => {
         getMenu()
     }, [])
 
+    const enlargeImg = () => {
+        img.style.transform = 'scale(1.5)'
+        img.style.transition = 'transform 0.25s ease'
+    }
 
     return (
         <Wrapper>
             <TextWrapper>
-                    {menu && <Document file={menu} />}
+                    {menu && <img src={menu} alt='menu' onClick={enlargeImg}/>}
                 <TextContainer>
                     Woodstockholm works with a dynamic menu, using locally and sustainably produced raw materials. No matter what you choose from our menu, our goal that you will be guaranteed an experience where flavours and other impressions (yes, we eat with our eyes too! ) interact and reinforce each other. Our menus vary therefore with respect to season and availability.
                 </TextContainer>
