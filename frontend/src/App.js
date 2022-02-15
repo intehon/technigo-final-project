@@ -14,6 +14,7 @@ import Admin from './pages/Admin'
 import Login from './pages/Login'
 import Chambre from './pages/Chambre'
 import NotFound from './pages/NotFound'
+import FAQ from './pages/FAQ'
 
 import './index.css'
 
@@ -51,6 +52,7 @@ const App = () => {
             <Route path='/food-and-wine' element={<Food />} />
             <Route path='/theme' element={<Theme />} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/faq' element={<FAQ />} />
             <Route path='/chambre' element={<Chambre />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
