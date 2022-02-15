@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Document } from 'react-pdf'
+
+import { API_URL } from '../utils/constants'
 
 const Food = () => {
+    const [menu, setMenu] = useState('')
+
+    const getMenu = () => {
+
+        const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          }
+      
+          fetch(API_URL('menus'), options)
+          .then((res) => res.json())
+          .then((json) => setMenu(json.response[0].fileUrl))
+        }
+
+    useEffect(() => {
+        getMenu()
+    }, [])
+
+
     return (
         <Wrapper>
             <TextWrapper>
+                    {menu && <Document file={menu} />}
                 <TextContainer>
                     Woodstockholm works with a dynamic menu, using locally and sustainably produced raw materials. No matter what you choose from our menu, our goal that you will be guaranteed an experience where flavours and other impressions (yes, we eat with our eyes too! ) interact and reinforce each other. Our menus vary therefore with respect to season and availability.
                 </TextContainer>

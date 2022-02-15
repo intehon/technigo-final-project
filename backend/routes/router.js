@@ -9,6 +9,7 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
 import User from '../models/User.js'
 import Role from '../models/Role.js'
+import Theme from '../models/Theme.js'
 
 const router = express.Router()
 
@@ -24,35 +25,13 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'staff-avatars',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 165, height: 165, crop: 'limit' }],
-  },
-})
-
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/')
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(' ').join('-')
-    cb(null, uuid() + '-' + fileName)
-  },
+    folder: 'theme-gallery',
+    allowedFormats: ['jpg', 'png', 'jpeg'],
+    transformation: [{ width: 700, height: 700, crop: 'limit' }]
+  }
 })
 
 const parser = multer({ storage })
-
-const upload = multer({ 
-  storage: fileStorage,
-  fileFilter: (req, file, cb) => {
-      if (file.mimetype == 'image/png' || file.mimetype == 'application/pdf' || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-        cb(null, true)
-   } else {
-      cb(null, false)
-      return cb(new Error('Only .png, .jpg, .jpeg and .pdf format allowed!'))
-    }
-  }
-})
 
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
@@ -82,7 +61,7 @@ const authenticateUser = async (req, res, next) => {
   
   // endpoint for signing up
   
-  router.post('/signup', parser.single('image'), async (req, res) => {
+  router.post('/signup', async (req, res) => {
     const { username, password, email } = req.body
   
     try {
@@ -218,20 +197,58 @@ router.delete('/users/:userId', async (req, res) => {
   
 // endpoint for file uploads
 
-router.post('/files', upload.single('file', 'image'), async (req, res) => {
+router.post('/files', parser.single('image'), async (req, res) => {
   try { 
-      res.json({ file: req.file.path, fileId: req.file.filename})
+      const theme = await new Theme({ name: req.body.name, imageUrl: req.file.path, imageId: req.file.filename, description: req.body.description }).save()
+      res.json({
+        response: theme,
+        success: true,
+      })
   } catch (error) {
     res.status(400).json({ response: error, success: false })
   }
 })
 
-// endpoint to get menus
+// endpoint to get files
 
-// router.get('/files', async (req, res) => {
-//   const files = await files.find({contentType: "application/pdf"}).sort({ name: 1 })
-//   res.status(200).json({ response: users, success: true })
+router.get('/files', async (req, res) => {
+    try {
+    const files = await Theme.find({}).sort({ createdAt: -1 })
+    res.status(200).json({ response: files, success: true })
+    } catch (error) {
+      res.status(400).json({
+        response: error,
+        success: false
+      })
+    }
+  })
+
+// // endpoint for menu upload
+
+//   router.post('/menus', upload.single('file'), async (req, res) => {
+//     try { 
+//         const menu = await new Menu({ name: req.body.name, fileUrl: req.file.path, fileId: req.file.filename }).save()
+//         res.json({
+//           response: menu,
+//           success: true,
+//         })
+//     } catch (error) {
+//       res.status(400).json({ response: error, success: false })
+//     }
+//   })
+
+// // endpoint to get menus
+
+// router.get('/menus', async (req, res) => {
+//   try {
+//   const menus = await Menu.find({}).sort({ createdAt: -1 })
+//   res.status(200).json({ response: menus, success: true })
+//   } catch (error) {
+//     res.status(400).json({
+//       response: error,
+//       success: false
+//     })
+//   }
 // })
-
 
   export default router

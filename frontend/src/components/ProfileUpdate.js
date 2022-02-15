@@ -7,13 +7,14 @@ import { API_URL } from '../utils/constants'
 const ProfileUpdate = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
 
   const userId = useSelector((store) => store.user.userId)
 
   const dispatch = useDispatch()
 
-  const [profile, setProfile] = useState({ name: '', email: '', role: '' })
+  const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
   const getProfile = () => {
     fetch(API_URL(`users/${userId}`), {
       method: "GET",
@@ -22,7 +23,7 @@ const ProfileUpdate = () => {
       .then(data => {
         console.log(data)
         if (data.success) {
-            setProfile({name: data.response.name, email: data.response.email, role: data.response.role})
+            setProfile({name: data.response.name, email: data.response.email, role: data.response.role, username: data.response.username})
         } else {
             setProfile(null)
         }
@@ -50,7 +51,8 @@ const ProfileUpdate = () => {
       body: JSON.stringify({
         name: name,
         role: role,
-        email: email
+        email: email,
+        username: username,
       })
     }
 
@@ -63,13 +65,10 @@ const ProfileUpdate = () => {
               dispatch(user.actions.setName(data.response.name))
               dispatch(user.actions.setRole(data.response.role))
               dispatch(user.actions.setEmail(data.response.email))
+              dispatch(user.actions.setUserName(data.response.username))
               dispatch(user.actions.setError(null))
             })
         } else {
-                // dispatch(user.actions.setUserId(null))
-                // dispatch(user.actions.setName(null))
-                // dispatch(user.actions.setRole(null))
-                // dispatch(user.actions.fileInput(null))
                 dispatch(user.actions.setError(data.response))
         }
         })
@@ -114,9 +113,10 @@ const ProfileUpdate = () => {
         <div>
         {profile && (
           <div>
+            <p>Username: {profile.username}</p>
             <p>Name: {profile.name}</p>
             <p>Email: {profile.email} </p>
-            <p>Role: {profile.role.description}</p>
+            <p>Role: {profile.role?.description}</p>
           </div>
         )}
         </div>

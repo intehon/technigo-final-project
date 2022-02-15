@@ -5,6 +5,7 @@ import listEndpoints from 'express-list-endpoints'
 
 
 import router from './routes/router.js'
+import menuRouter from './routes/menu.js'
 
 // Defines the port the app will run on. Defaults to 8080, but can be 
 // overridden when starting the server. For example:
@@ -17,6 +18,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(router)
+app.use(menuRouter)
 
 //middleware to check if everything is ok before moving on (1 = all is good)
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Menu } from './Menu'
-import UpdateTheme from './UpdateTheme'
-import ProfileUpdate from './ProfileUpdate'
-
 import user from '../reducers/user'
-import { useNavigate } from 'react-router-dom'
+
+import ProfileUpdate from './ProfileUpdate'
+import ThemeUpdate from './ThemeUpdate'
+import MenuUpdate from './MenuUpdate'
 
 const Admin = () => {
     const accessToken = useSelector((store) => store.user.accessToken)
@@ -40,10 +40,10 @@ const Admin = () => {
                     <ProfileUpdate />
                 </div>
                 <div>
-                    <Menu />
+                    <MenuUpdate />
                 </div>
                 <div>
-                    <UpdateTheme />
+                    <ThemeUpdate />
                 </div>
             </Container>
         </>
