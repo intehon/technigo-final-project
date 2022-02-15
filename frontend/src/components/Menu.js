@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import ModalImage from 'react-modal-image'
 
 import { API_URL } from '../utils/constants'
 
@@ -28,7 +29,12 @@ const Menu = () => {
 
 
   return (
-    <ImageContainer>{menu && <MenuImage src={menu} alt="menu" />}</ImageContainer>
+    <ImageContainer>{menu && <ModalImage
+      small={menu}
+      large={menu}
+      alt="Food menu"
+      hideDownload={true}
+      hideZoom={true} />}</ImageContainer>
   )
 }
 
@@ -37,9 +43,9 @@ const ImageContainer = styled.div`
     /* max-width: 600px; */
 `
 
-const MenuImage = styled.img`
-  display: inline-block;
-  max-width: 600px;
-`
+// const MenuImage = styled.img`
+//   display: inline-block;
+//   max-width: 600px;
+// `
 
 export default Menu
