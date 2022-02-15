@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 // import MainImg from '../assets/content/woodstockholm-215.jpg'
-import SetTable from '../assets/content/woodstockholm-205.jpg'
+// import SetTable from '../assets/content/woodstockholm-205.jpg'
+import SetTable from '../assets/content/woodstockholm-245.jpg'
 import {BiPhone} from 'react-icons/bi'
 
 const Main = () => {
@@ -34,7 +35,6 @@ const Main = () => {
 const Text = styled.p`
     text-transform: uppercase;
     font-size: 18px;
-    /* font-weight: bold; */
 `
 
 const BackDrop = styled.main`

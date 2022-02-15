@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
 
@@ -27,8 +28,18 @@ const Menu = () => {
 
 
   return (
-    <div>{menu && <img src={menu} alt="menu" />}</div>
+    <ImageContainer>{menu && <MenuImage src={menu} alt="menu" />}</ImageContainer>
   )
 }
+
+const ImageContainer = styled.div`
+    text-align: center;
+    /* max-width: 600px; */
+`
+
+const MenuImage = styled.img`
+  display: inline-block;
+  max-width: 600px;
+`
 
 export default Menu

@@ -6,9 +6,11 @@ import Menu from '../components/Menu.js'
 const Food = () => {
 
     return (
-        <Wrapper>
-            <TextWrapper>
-            {Menu && <Menu />}
+      
+            <Wrapper>
+                <ImageContainer>
+                    {Menu && <Menu />}
+                </ImageContainer>
                 <TextContainer>
                     Woodstockholm works with a dynamic menu, using locally and sustainably produced raw materials. No matter what you choose from our menu, our goal that you will be guaranteed an experience where flavours and other impressions (yes, we eat with our eyes too! ) interact and reinforce each other. Our menus vary therefore with respect to season and availability.
                 </TextContainer>
@@ -21,24 +23,26 @@ const Food = () => {
                 <TextContainer>
                     Opening hours monday – sunday 17-23!
                 </TextContainer> 
-            </TextWrapper>
-        </Wrapper>
+            </Wrapper>
+     
     )
 }
 
 const Wrapper = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-content: center;
+    max-width: 600px;
 `
 
-const TextWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 5px 200px;
+const ImageContainer = styled.div`
+    text-align: center;
+    /* max-width: 600px; */
 `
 
 const TextContainer = styled.div`
     display: flex;
+    justify-content: center;
     padding: 8px;
     letter-spacing: 1px;
 `

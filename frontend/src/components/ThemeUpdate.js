@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
+
 import { API_URL } from '../utils/constants'
 
 const ThemeUpdate = () => {
@@ -35,13 +37,13 @@ const ThemeUpdate = () => {
 
 
   return (
-    <div className='App'>
+    <Container className='App'>
       <h1>Update theme</h1>
       {image.preview && <img src={image.preview} height='400' width='400' alt='preview'
       />}
       <hr></hr>
       <form onSubmit={handleSubmit}>
-        <div>
+        <FormContainer>
           <label htmlFor='name'>Name</label>
             <input type="text" value={name} name="name" onChange={(e) => setName(e.target.value)}/>
           <label htmlFor='description'>Description</label>
@@ -51,11 +53,21 @@ const ThemeUpdate = () => {
           <label htmlFor='image'>Image</label>
           <input type='file' name='file' ref={fileInput} onChange={handleFileChange}></input>
           <p>Supported files: .png, .jpg. .jpeg</p>
-        </div>
+        </FormContainer>
         <button type='submit'>Submit</button>
       </form>
-    </div>
+    </Container>
   )  
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 export default ThemeUpdate

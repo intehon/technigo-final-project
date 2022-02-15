@@ -17,6 +17,7 @@ const Chambre = () => {
 
 const Wrapper = styled.div`
     display: flex;
+    max-width: 600px;
 `
 
 const TextContainer = styled.div`
@@ -26,10 +27,10 @@ const TextContainer = styled.div`
 `
 
 const Link = styled.a`
-    color: orange;
+    color: #c91c81;
     text-decoration: none;
     &:hover {
-        color: red
+        color: #e40086;
     }
 `
 

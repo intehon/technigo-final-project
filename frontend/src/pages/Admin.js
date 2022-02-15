@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -10,6 +10,10 @@ import ThemeUpdate from '../components/ThemeUpdate'
 import MenuUpdate from '../components/MenuUpdate'
 
 const Admin = () => {
+    const [showProfile, setShowProfile] = useState(false)
+    const [updateMenu, setUpdateMenu] = useState(false)
+    const [updateTheme, setUpdateTheme] = useState(false)
+
     const accessToken = useSelector((store) => store.user.accessToken)
 
     const dispatch = useDispatch()
@@ -27,25 +31,27 @@ const Admin = () => {
 
     return (
         <>  
-            <Container>
-                <div>
-                    <button onClick={logout}>Sign out!</button>
-                </div>
-                <div>
-                    <ProfileUpdate />
-                </div>
-                <div>
-                    <MenuUpdate />
-                </div>
-                <div>
-                    <ThemeUpdate />
-                </div>
-            </Container>
+            <Wrapper>
+                <ButtonContainer>
+                <button onClick={() => setShowProfile(showProfile ? false : true)}>View profile</button>
+                {showProfile && <ProfileUpdate />}
+                <button onClick={() => setUpdateMenu(updateMenu ? false : true)}>Update Menu</button>
+                {updateMenu && <MenuUpdate />}
+                <button onClick={() => setUpdateTheme(updateTheme ? false : true)}>Update Theme</button>
+                {updateTheme && <ThemeUpdate />}
+                </ButtonContainer>
+            </Wrapper>
         </>
     )
 }
 
-const Container = styled.div`
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+`
+
+const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
 `

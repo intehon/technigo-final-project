@@ -4,14 +4,11 @@ import { API_URL } from '../utils/constants'
 const MenuUpdate = () => {
   const fileInput = useRef()
   const [menu, setMenu] = useState({ preview: '', data: ''})
-  const [status, setStatus] = useState('')
-  const [name, setName] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append('file', fileInput.current.files[0])
-    formData.append('name', name)
 
     fetch(API_URL('menus'), {
       method: 'POST',
@@ -45,7 +42,6 @@ const MenuUpdate = () => {
       </div>
       <button type='submit'>Submit</button>
     </form>
-    {status && <h4>{status}</h4>}
   </div>
   )  
 }
