@@ -5,9 +5,9 @@ import styled from 'styled-components'
 
 import user from '../reducers/user'
 
-import ProfileUpdate from './ProfileUpdate'
-import ThemeUpdate from './ThemeUpdate'
-import MenuUpdate from './MenuUpdate'
+import ProfileUpdate from '../components/ProfileUpdate'
+import ThemeUpdate from '../components/ThemeUpdate'
+import MenuUpdate from '../components/MenuUpdate'
 
 const Admin = () => {
     const accessToken = useSelector((store) => store.user.accessToken)
@@ -16,11 +16,6 @@ const Admin = () => {
     const navigate = useNavigate()
 
     const logout = () => {
-        // dispatch(user.actions.setAccessToken(''))
-        // dispatch(user.actions.setEmail(''))
-        // dispatch(user.actions.setUserId(''))
-        // dispatch(user.actions.setUserName(''))
-        // dispatch(user.actions.setName(''))
         dispatch(user.actions.setInitialState())
     }
 
@@ -52,6 +47,7 @@ const Admin = () => {
 
 const Container = styled.div`
     display: flex;
+    flex-direction: column;
 `
 
 export default Admin

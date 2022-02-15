@@ -6,23 +6,27 @@ export const Navbar = () => {
   return (
   <Container>
          <NavLink to='/' style={({ isActive }) => ({
-            color: isActive ? '#FF8C00' : '#808080',
+            color: isActive ? '#e40086' : '#808080',
             textDecoration: isActive ? 'underline' : 'none'
         })}>Home</NavLink><Text> | </Text>
         <NavLink to='/food-and-wine' style={({ isActive }) => ({
-            color: isActive ? '#FF8C00' : '#808080',
+            color: isActive ? '#e40086' : '#808080',
             textDecoration: isActive ? 'underline' : 'none'
         })}>Food and Wine</NavLink><Text> | </Text>
+        <NavLink to='/chambre' style={({ isActive }) => ({
+            color: isActive ? '#e40086' : '#808080',
+            textDecoration: isActive ? 'underline' : 'none'
+        })}>Chambre Separee</NavLink><Text> | </Text>
         <NavLink to='/theme' style={({ isActive }) => ({
-            color: isActive ? '#FF8C00' : '#808080',
+            color: isActive ? '#e40086' : '#808080',
             textDecoration: isActive ? 'underline' : 'none'
         })}>Current Theme</NavLink><Text> | </Text>
         <NavLink to='/about' style={({ isActive }) => ({
-            color: isActive ? '#FF8C00' : '#808080',
+            color: isActive ? '#e40086' : '#808080',
             textDecoration: isActive ? 'underline' : 'none'
         })}>About Us</NavLink><Text> | </Text>
         <NavLink to='/faq' style={({ isActive }) => ({
-            color: isActive ? '#FF8C00' : '#808080',
+            color: isActive ? '#e40086' : '#808080',
             textDecoration: isActive ? 'underline' : 'none',
         })}>FAQ</NavLink>
   </Container>
@@ -30,7 +34,6 @@ export const Navbar = () => {
 }
 
 const Container = styled.nav`
-    /* display: flex; */
     display: inline;
     justify-content: flex-end;
     text-transform: uppercase;
@@ -40,5 +43,4 @@ const Container = styled.nav`
 
 const Text = styled.p`
         display: inline;
-        /* justify-content: flex-end; */
 `

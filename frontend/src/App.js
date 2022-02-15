@@ -5,20 +5,19 @@ import { Provider } from 'react-redux'
 import { combineReducers, createStore, compose, applyMiddleware } from '@reduxjs/toolkit'
 
 
-import Main from './components/Main'
-import About from './components/About'
-import Food from './components/Food'
-import Theme from './components/Theme'
-import Signup from './components/Signup'
-import Admin from './components/Admin'
-import Login from './components/Login'
-import NotFound from './components/NotFound'
+import Main from './pages/Main'
+import About from './pages/About'
+import Food from './pages/Food'
+import Theme from './pages/Theme'
+import Signup from './pages/Signup'
+import Admin from './pages/Admin'
+import Login from './pages/Login'
+import Chambre from './pages/Chambre'
+import NotFound from './pages/NotFound'
 
 import './index.css'
 
 import user from './reducers/user'
-// import Header from './components/Header'
-// import Footer from './components/Footer'
 import Layout from './components/Layout/Layout'
 
 const reducer = combineReducers({
@@ -47,16 +46,15 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            {/* <Header /> */}
             <Route path='/' element={<Main />} />
             <Route path='/about' element={<About />} />
             <Route path='/food-and-wine' element={<Food />} />
             <Route path='/theme' element={<Theme />} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/chambre' element={<Chambre />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/404' element={<NotFound />} />
-            {/* <Footer /> */}
           </Routes>
         </Layout>
       </BrowserRouter>
