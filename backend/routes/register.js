@@ -32,12 +32,12 @@ router.post('/register', async (req, res) => {
         email,
         password: bcrypt.hashSync(password, salt)
         }).save()
+      
         res.status(201).json({
         response: {
             userId: newUser._id,
             username: newUser.username,
             email: newUser.email,
-            role: newUser.role,
             accessToken: newUser.accessToken,
         },
         success: true,

@@ -11,7 +11,6 @@ const ProfileUpdate = () => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
-  // const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
   const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
   const [message, setMessage] = useState(false)
 
