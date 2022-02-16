@@ -1,10 +1,11 @@
+import { Container } from '@mui/material'
 import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
 import Loader from './Loader'
+import Placeholder from './Placeholder'
 
 const ThemeUpdate = () => {
   const fileInput = useRef()
@@ -55,13 +56,16 @@ const ThemeUpdate = () => {
       data: e.target.files[0]
     }
     setImage(img)
-  } 
+  } else {
+    setImage('')
+  }
 }
 
 
   return (
-    <Container className='App'>
+    <Container sx={{width: '400px'}}>
       {loading && <Loader />}
+      {!image.preview && <Placeholder />}
         <h1>Update theme</h1>
           {image.preview && <img src={image.preview} height='400' width='400' alt='preview'
           />}
@@ -85,10 +89,10 @@ const ThemeUpdate = () => {
   )  
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `
 
 const FormContainer = styled.div`
   display: flex;

@@ -1,3 +1,4 @@
+import { Container } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 
@@ -48,6 +49,7 @@ const ProfileUpdate = () => {
     const options = {
       method: 'PATCH',
       headers: {
+        "Authorization": accessToken,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -57,7 +59,7 @@ const ProfileUpdate = () => {
       })
     }
 
-    fetch(API_URL(`users/${userId}/update`), options)
+    fetch(API_URL(`users/${userId}`), options)
       .then((res) => res.json())
       .then((data) => {
           if (data.success) {
@@ -78,6 +80,7 @@ const ProfileUpdate = () => {
   }
 
   return (
+    <Container sx={{width: '400px'}}>
       <div>
         {loading && <Loader />}
           <form onSubmit={handleFormSubmit}>
@@ -111,8 +114,13 @@ const ProfileUpdate = () => {
         </div>
         {message &&
         <div>Your data is saved!</div>} 
-    </div>
+      </div>
+    </Container>
   )
 }
+
+// const Wrapper = styled.div`
+//   max-width: 400px;
+// `
 
 export default ProfileUpdate
