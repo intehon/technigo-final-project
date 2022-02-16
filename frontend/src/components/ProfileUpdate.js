@@ -55,6 +55,7 @@ const ProfileUpdate = () => {
         name: name,
         email: email,
         username: username,
+        role: profile.role
       })
     }
 
