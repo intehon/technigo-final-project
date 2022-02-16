@@ -1,6 +1,8 @@
-import { Container } from '@mui/material'
+import { Container, TextField, Button } from '@mui/material'
 import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
+import FileUploadIcon from '@mui/icons-material/FileUpload'
+import SaveIcon from '@mui/icons-material/Save'
 import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
@@ -12,7 +14,7 @@ const ThemeUpdate = () => {
   const nameInput = useRef()
   const descriptionInput = useRef()
   const [image, setImage] = useState({ preview: '', data: ''})
-  const [name, setName] = useState('')
+  const [name, setName] = useState('')  
   const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
@@ -63,40 +65,60 @@ const ThemeUpdate = () => {
 
 
   return (
-    <Container sx={{width: '400px'}}>
+    <Container>
       {loading && <Loader />}
+      <Wrapper>
       {!image.preview && <Placeholder />}
-        <h1>Update theme</h1>
           {image.preview && <img src={image.preview} height='400' width='400' alt='preview'
           />}
-          <hr></hr>
-          <form onSubmit={handleSubmit}>
-            <FormContainer>
-              <label htmlFor='name'>Name</label>
-                <input type="text" value={name} ref={nameInput} name="name" onChange={(e) => setName(e.target.value)}/>
-              <label htmlFor='description'>Description</label>
-                <textarea value={description} ref={descriptionInput} name='description' rows='5' cols='40' onChange={(e) => setDescription(e.target.value)}>
-                  Description of new theme...^_^
-                </textarea>
-              <label htmlFor='image'>Image</label>
-              <input type='file' name='file' ref={fileInput} onChange={handleFileChange}></input>
-              <p>Supported files: .png, .jpg. .jpeg</p>
-            </FormContainer>
-            <button type='submit'>Submit</button>
-        </form>
+          <FormWrapper>
+            <h1>Update theme</h1>
+              <form onSubmit={handleSubmit}>
+                    <TextField type="text" value={name} ref={nameInput} label="New theme name" name="name" color="secondary" onChange={(e) => setName(e.target.value)}/>
+                   <FormChild>
+                    <TextField value={description} ref={descriptionInput} label="New theme description..." name='description' multiline rows={3} color="secondary" onChange={(e) => setDescription(e.target.value)} />
+                  </FormChild>
+                  {/* <label htmlFor='image'>Image</label>
+                  <input type='file' name='file' ref={fileInput} label="New theme description" onChange={handleFileChange}></input> */}
+                  <label htmlFor="contained-button-file"> </label>
+                    <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
+                    <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
+                      Upload
+                    </Button>
+                  <Text>Supported files: .png, .jpg. .jpeg</Text>
+                  <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Submit</Button>
+                {/* <button type='submit'>Submit</button> */}
+            </form>
+          </FormWrapper>
+        </Wrapper>
         {message && <div>Theme successfully uploaded!</div>}
     </Container>
   )  
 }
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+`
 
-const FormContainer = styled.div`
+const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 5px;
 `
+
+const FormChild = styled.div`
+  padding: 12px 0;
+`
+
+const Text = styled.p`
+  font-size: 14px;
+  font-style: italic;
+`
+
+const Input = styled('input')({
+  display: 'none',
+})
 
 export default ThemeUpdate

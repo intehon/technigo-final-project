@@ -52,8 +52,8 @@ const TestAdmin = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Update Menu" {...a11yProps(0)} />
+        <Tabs textColor="secondary" indicatorColor="secondary" value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Update Menu" {...a11yProps(0)}/>
           <Tab label="Update Theme" {...a11yProps(1)} />
           <Tab label="Update Profile" {...a11yProps(2)} />
         </Tabs>

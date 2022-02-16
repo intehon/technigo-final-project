@@ -1,8 +1,9 @@
-import { Container } from '@mui/material'
 import React, { useState, useRef } from 'react'
+import { Container, Button } from '@mui/material'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-
+import FileUploadIcon from '@mui/icons-material/FileUpload'
+import SaveIcon from '@mui/icons-material/Save'
 import { API_URL } from '../utils/constants'
 import Loader from './Loader'
 
@@ -54,26 +55,47 @@ const MenuUpdate = () => {
 
 
   return (
-    <Container sx={{width: '400px'}}>
+    <Container>
       {loading && <Loader />}
-        <h1>Update menu</h1>
-        {!menu.preview && <Placeholder />}
-        {menu.preview && <img src={menu.preview} height='400' width='400' alt='preview' />}
-        <hr></hr>
-          <form onSubmit={handleSubmit}>
+        <Wrapper>
+          {!menu.preview && <Placeholder />}
+          {menu.preview && <img src={menu.preview} height='400' width='400' alt='preview' />}
+          <FormWrapper>
+            <h1>Update menu</h1>
+            <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor='file'>File</label>
-              <input type='file' name='file' ref={fileInput} onChange={handleFileChange} ></input>
+              <label htmlFor="contained-button-file">
+                <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
+              <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
+                Upload
+              </Button>
+              </label>
+              {/* <label htmlFor='file'>Choose image</label>
+              <input type='file' name='file' ref={fileInput} onChange={handleFileChange} ></input> */}
               <TextContainer>
                 <Text>Please convert .pdf to .jpeg, .jpg or .png before proceeding</Text>
               </TextContainer>
             </div>
-            <button type='submit'>Submit</button>
-          </form>
-        {message && <div>Menu successfully uploaded!</div>}
-      </Container>
+              <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Save</Button>
+            </form>
+          </FormWrapper>
+        </Wrapper>
+      {message && <div>Menu successfully uploaded!</div>}
+    </Container>
   )  
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+`
+
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+`
 
 const TextContainer = styled.div`
   max-width: 250px;
@@ -83,5 +105,9 @@ const Text = styled.p`
   font-size: 14px;
   font-style: italic;
 `
+
+const Input = styled('input')({
+  display: 'none',
+})
 
 export default MenuUpdate

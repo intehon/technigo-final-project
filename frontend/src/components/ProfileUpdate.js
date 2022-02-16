@@ -80,7 +80,7 @@ const ProfileUpdate = () => {
   }
 
   return (
-    <Container sx={{width: '400px'}}>
+    <Container>
       <div>
         {loading && <Loader />}
           <form onSubmit={handleFormSubmit}>
