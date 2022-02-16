@@ -23,10 +23,6 @@ const UserSchema = new mongoose.Schema({
       type: String,
       default: () => crypto.randomBytes(128).toString('hex'),
     },
-    // refreshToken: {
-    //   type: String,
-    //   default: () => crypto.randomBytes(128).toString('hex'),
-    // },
     name: {
       type: String,
       minlength: 2,

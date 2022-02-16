@@ -3,6 +3,7 @@ import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import dotenv from 'dotenv'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import auth from '../middleware/auth.js'
 
 import Theme from '../models/Theme.js'
 
@@ -30,7 +31,7 @@ const parser = multer({ storage })
 
 // endpoint for theme uploads
 
-router.post('/themes', parser.single('image'), async (req, res) => {
+router.post('/themes', auth, parser.single('image'), async (req, res) => {
     try { 
         const theme = await new Theme({ name: req.body.name, imageUrl: req.file.path, imageId: req.file.filename, description: req.body.description }).save()
         res.json({

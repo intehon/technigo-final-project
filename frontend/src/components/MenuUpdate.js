@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 
+import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
 import Loader from './Loader'
 
@@ -8,6 +10,8 @@ const MenuUpdate = () => {
   const [menu, setMenu] = useState({ preview: '', data: ''})
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
+
+  const accessToken = useSelector((store) => store.user.accessToken)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,6 +22,9 @@ const MenuUpdate = () => {
 
     fetch(API_URL('menus'), {
       method: 'POST',
+      headers: {
+        'Authorization': accessToken
+      },
       body: formData
     })
     .then((res) => res.json())

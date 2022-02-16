@@ -15,12 +15,17 @@ const ProfileUpdate = () => {
   const [message, setMessage] = useState(false)
 
   const userId = useSelector((store) => store.user.userId)
+  const accessToken = useSelector((store) => store.user.accessToken)
 
   const dispatch = useDispatch()
 
   const getProfile = () => {
     fetch(API_URL(`users/${userId}`), {
       method: "GET",
+      headers: {
+        'Authorization': accessToken,
+        "Content-Type": "application/json",
+      }
     })
       .then(res => res.json())
       .then(data => {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
+
 import { API_URL } from '../utils/constants'
 
 const Menu = () => {
-
     const [menu, setMenu] = useState('')
     const [imgSize, setImgSize] = useState("600px")
 

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
+
 
 const Theme = () => {
 
   const [theme, setTheme] = useState('')
+
+  const accessToken = useSelector((store) => store.user.accessToken)
 
   const getTheme = () => {
 

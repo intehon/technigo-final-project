@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import user from '../reducers/user'
 import { API_URL } from '../utils/constants'
 import Loader from './Loader'
 
@@ -13,6 +15,8 @@ const ThemeUpdate = () => {
   const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
+
+  const accessToken = useSelector((store) => store.user.accessToken)
 
   // const dispatch = useDispatch()
 
@@ -27,6 +31,9 @@ const ThemeUpdate = () => {
 
     fetch(API_URL('themes'), {
       method: 'POST',
+      headers: {
+      'Authorization': accessToken
+      },
       body: formData
     })
     .then((res) => res.json())
