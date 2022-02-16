@@ -1,5 +1,8 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+import * as path from 'path'
 
 import User from '../models/User.js'
 
@@ -13,7 +16,7 @@ router.post('/login', async (req, res) => {
         response: 'Username and password are required',
         success: false
      })
-
+     
     try {
         const user = await User.findOne({ username })
         if (!user) return res.sendStatus(401) // unauthorized
