@@ -35,7 +35,7 @@ const Signup = () => {
       body: JSON.stringify({ username, password, email }),
     }
 
-    fetch(API_URL('signup'), options)
+    fetch(API_URL('register'), options)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -53,7 +53,7 @@ const Signup = () => {
             dispatch(user.actions.setEmail(null))
             dispatch(user.actions.setAccessToken(null))
             dispatch(user.actions.setError(data.response))
-            alert("Username already taken!")
+            alert("Something went wrong!")
           })  
         }
       })

@@ -9,7 +9,7 @@ import Main from './pages/Main'
 import About from './pages/About'
 import Food from './pages/Food'
 import Theme from './pages/Theme'
-import Signup from './pages/Signup'
+import Register from './pages/Register'
 import Admin from './pages/Admin'
 import Login from './pages/Login'
 import Chambre from './pages/Chambre'
@@ -54,7 +54,7 @@ const App = () => {
             <Route path='/admin' element={<Admin />} />
             <Route path='/faq' element={<FAQ />} />
             <Route path='/chambre' element={<Chambre />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/404' element={<NotFound />} />
           </Routes>

@@ -43,7 +43,7 @@ const Login = () => {
       fetch(API_URL('login'), options)
         .then((res) => res.json())
         .then((data) => {
-          if (data.success) {
+            if (data.success) {
             batch(() => {
               dispatch(user.actions.setUserId(data.response.userId))
               dispatch(user.actions.setUserName(data.response.username))
@@ -93,7 +93,7 @@ const Login = () => {
           <p>
             <i>Not a member yet?</i>
           </p>
-          <Link to='/signup'>Sign up here!</Link>
+          <Link to='/register'>Sign up here!</Link>
         </div>
     )
   }

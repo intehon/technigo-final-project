@@ -10,7 +10,7 @@ const ProfileUpdate = () => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
-  const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
+  // const [role, setRole] = useState('61eaf441fd9d2d3916fe0d7b')
   const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
   const [message, setMessage] = useState(false)
 
@@ -47,7 +47,6 @@ const ProfileUpdate = () => {
       },
       body: JSON.stringify({
         name: name,
-        role: role,
         email: email,
         username: username,
       })
@@ -60,7 +59,7 @@ const ProfileUpdate = () => {
               getProfile()
             batch(() => {
               dispatch(user.actions.setName(data.response.name))
-              dispatch(user.actions.setRole(data.response.role))
+              // dispatch(user.actions.setRole(data.response.role))
               dispatch(user.actions.setEmail(data.response.email))
               dispatch(user.actions.setUserName(data.response.username))
               dispatch(user.actions.setError(null))
@@ -89,21 +88,6 @@ const ProfileUpdate = () => {
                       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </label>
               </div>
-              <div>
-                  <input 
-                  type="radio" 
-                  value="61e95a685da324dd0f0ca0ce" 
-                  checked={role === '61e95a685da324dd0f0ca0ce'}
-                  onChange={(e) => setRole(e.target.value)}
-                  /> Admin
-                  <input 
-                  type="radio" 
-                  value="61eaf441fd9d2d3916fe0d7b" 
-                  checked={role === '61eaf441fd9d2d3916fe0d7b'}
-                  onChange={(e) => setRole(e.target.value)}
-                  /> Staff
-              </div>
-
               <div>
                   <button type="submit">
                       Submit
