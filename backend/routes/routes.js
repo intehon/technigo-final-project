@@ -1,4 +1,5 @@
 import express from 'express'
+import auth from '../middleware/auth.js'
 
 import menuRouter from './menu.js'
 import themeRouter from './theme.js'
@@ -8,10 +9,11 @@ import registerRouter from './register.js'
 
 const apiRouter = express()
 
+apiRouter.use(loginRouter)
+apiRouter.use(registerRouter)
+apiRouter.use(auth)
 apiRouter.use(menuRouter)
 apiRouter.use(themeRouter)
 apiRouter.use(userRouter)
-apiRouter.use(loginRouter)
-apiRouter.use(registerRouter)
 
 export default apiRouter

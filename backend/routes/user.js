@@ -1,8 +1,4 @@
 import express from 'express'
-import bcrypt from 'bcrypt'
-
-// import auth from '../middleware/auth.js'
-// import verifyRoles from '../middleware/verifyRoles.js'
 
 import User from '../models/User.js'
 import Role from '../models/Role.js'
@@ -17,7 +13,6 @@ router.route('/users')
     const users = await User.find({}).sort({ name: 1 }).populate('role')
     res.status(200).json({ response: users, success: true })
     })
-    // .post()
 
 // endpoint to get, update and delete single user
 
@@ -58,12 +53,6 @@ router.route('/users/:userId')
         }
     })
 
-
-// endpoint for admin
-
-// router.get('/admin', auth)
-
-
 // endpoint for role
 
 // router.post('/role', async (req, res) => {
@@ -96,30 +85,5 @@ router.route('/users/:userId')
 //     }
 // })
 
-// get single user by id
-
-// router.get('/users/:userId', async (req, res) => {
-//     const { userId } = req.params
-
-//     try {
-//         const user = await User.findById(userId).populate('role')
-//         res.status(200).json({ response: user, success: true })
-//     } catch (error) {
-//         res.status(400).json({ response: error, success: false})
-//     }
-// })
-
-// delete users
-
-// router.delete('/users/:userId', async (req, res) => {
-//     const { userId } = req.params
-
-//     try {
-//         const deletedUser = await User.findOneAndDelete({ _id: userId })
-//         res.status(200).json({ response: deletedUser, success: true })
-//     } catch (error) {
-//         res.status(400).json({ response: error, success: false })
-//     }
-// })
 
 export default router
