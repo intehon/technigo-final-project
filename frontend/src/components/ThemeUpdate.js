@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-// import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { API_URL } from '../utils/constants'
