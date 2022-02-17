@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 
 import MenuUpdate from './MenuUpdate'
 import ThemeUpdate from './ThemeUpdate'
-import ProfileUpdate from './ProfileUpdate'
+import AccountMenu from './AccountMenu'
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props
@@ -52,10 +52,9 @@ const TestAdmin = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs textColor="secondary" indicatorColor="secondary" value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs centered textColor="secondary" indicatorColor="secondary" value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Update Menu" {...a11yProps(0)}/>
           <Tab label="Update Theme" {...a11yProps(1)} />
-          <Tab label="Update Profile" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -63,9 +62,6 @@ const TestAdmin = () => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ThemeUpdate />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <ProfileUpdate />
       </TabPanel>
     </Box>
   );

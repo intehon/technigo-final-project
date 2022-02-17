@@ -101,26 +101,13 @@ const ProfileUpdate = () => {
                       Submit
                   </button>
               </div>
-          </form>
-        <div>
-        {profile && (
-          <div>
-            <p>Username: {profile.username}</p>
-            <p>Name: {profile.name}</p>
-            <p>Email: {profile.email} </p>
-            <p>Role: {profile.role?.description}</p>
-          </div>
-        )}
+          </form>  
+            {message &&
+          <div>Your data is saved!</div>} 
         </div>
-        {message &&
-        <div>Your data is saved!</div>} 
-      </div>
     </Container>
   )
 }
 
-// const Wrapper = styled.div`
-//   max-width: 400px;
-// `
 
 export default ProfileUpdate

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 import user from '../reducers/user'
 
@@ -9,7 +9,8 @@ import user from '../reducers/user'
 // import ThemeUpdate from '../components/ThemeUpdate'
 // import MenuUpdate from '../components/MenuUpdate'
 
-import TestAdmin from '../components/TestAdmin'
+import AdminMenu from '../components/AdminMenu'
+import AccountMenu from '../components/AccountMenu'
 
 const Admin = () => {
     const [showProfile, setShowProfile] = useState(false)
@@ -32,7 +33,10 @@ const Admin = () => {
     }, [accessToken, navigate])
 
     return (
-        <>  
+        <Wrapper>
+            <AccountMenuContainer>
+                   <AccountMenu />
+                   </AccountMenuContainer>
             {/* <Wrapper>
                 <ui>
                 <ButtonContainer>
@@ -46,20 +50,20 @@ const Admin = () => {
                 </ButtonContainer>
                 </ui>
             </Wrapper> */}
-            <TestAdmin />
-        </>
+            <AdminMenu />
+        </Wrapper>
     )
 }
 
-// const Wrapper = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     max-width: 600px;
-// `
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+`
 
-// const ButtonContainer = styled.div`
-//     display: flex;
-//     /* flex-direction: column; */
-// `
+const AccountMenuContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
 
 export default Admin

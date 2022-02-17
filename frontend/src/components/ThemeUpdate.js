@@ -86,7 +86,7 @@ const ThemeUpdate = () => {
                       Upload
                     </Button>
                   <Text>Supported files: .png, .jpg. .jpeg</Text>
-                  <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Submit</Button>
+                  <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Save</Button>
                 {/* <button type='submit'>Submit</button> */}
             </form>
           </FormWrapper>
