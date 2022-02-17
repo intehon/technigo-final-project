@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch, batch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import styled from 'styled-components'
+import { Button, TextField } from '@mui/material'
 
 import { API_URL } from "../utils/constants"
 import user from "../reducers/user"
@@ -21,7 +23,7 @@ const Signup = () => {
     if (accessToken) {
       navigate('/login')
     }
-  }, [navigate])
+  }, [navigate, accessToken])
 
   const onFormSubmit = (event) => {
     event.preventDefault()
@@ -65,44 +67,71 @@ const Signup = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
         {loading && <Loader />}
         <form onSubmit={onFormSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
+          <InputWrapper>
+          <TextField 
+            color="secondary"
+            required
             id="username"
+            label="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <label htmlFor="email">Email</label>
-          <input
+          </InputWrapper>
+          <InputWrapper>
+          <TextField
+            color="secondary"
+            required
             id="email"
-            type="email"
+            label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="password">Password</label>
-          <input
+          </InputWrapper>
+          <InputWrapper>
+          <TextField
+            color="secondary"
+            required
             id="password"
+            label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            type="submit"
-            disabled={password.length < 8}
-            onClick={onFormSubmit}
+          </InputWrapper>
+          <InputWrapper>
+          <Button 
+          variant="contained" 
+          color="secondary" 
+          component="span"
+          type="submit"
+          disabled={password.length < 8}
+          onClick={onFormSubmit}
           >
             Submit
-          </button>
+          </Button>
+          </InputWrapper>
         </form>
+        <InputWrapper>
         <p><i>Already a member?</i></p>
         <Link to="/login">
             Sign in here!
-        </Link>   
-  </div>
+        </Link>
+        </InputWrapper>   
+  </Wrapper>
   )
 }
 
 export default Signup
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+const InputWrapper = styled.div`
+  padding: 10px;
+`

@@ -1,4 +1,4 @@
-import { Container, TextField, Button } from '@mui/material'
+import { Container, TextField, TextareaAutosize, Button } from '@mui/material'
 import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import FileUploadIcon from '@mui/icons-material/FileUpload'
@@ -45,8 +45,8 @@ const ThemeUpdate = () => {
         setLoading(false)
         setMessage(true)
         setImage('')
-        nameInput.current.value = ''
-        descriptionInput.current.value = ''
+        setDescription('')
+        setName('')
       }
     })
   }
@@ -74,17 +74,29 @@ const ThemeUpdate = () => {
           <FormWrapper>
             <h1>Update theme</h1>
               <form onSubmit={handleSubmit}>
-                    <TextField type="text" value={name} ref={nameInput} label="New theme name" name="name" color="secondary" onChange={(e) => setName(e.target.value)}/>
+                    <TextField type="text" value={name} label="New theme name" name="name" color="secondary" onChange={(e) => setName(e.target.value)}/>
                    <FormChild>
+                   {/* <TextareaAutosize
+                      value={description}
+                      // ref={description}
+                      label="New theme description"
+                      name="description"
+                      aria-label="empty textarea"
+                      placeholder="New theme description"
+                      color="secondary"
+                      onChange={(e) => setDescription(e.target.value)}
+                      style={{ width: 200 }}
+                    /> */}
                     <TextField value={description} ref={descriptionInput} label="New theme description..." name='description' multiline rows={3} color="secondary" onChange={(e) => setDescription(e.target.value)} />
                   </FormChild>
                   {/* <label htmlFor='image'>Image</label>
                   <input type='file' name='file' ref={fileInput} label="New theme description" onChange={handleFileChange}></input> */}
-                  <label htmlFor="contained-button-file"> </label>
+                  <label htmlFor="contained-button-file">
                     <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
                     <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
-                      Upload
+                      Choose image
                     </Button>
+                    </label>
                   <Text>Supported files: .png, .jpg. .jpeg</Text>
                   <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Save</Button>
                 {/* <button type='submit'>Submit</button> */}

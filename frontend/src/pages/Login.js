@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
+// import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import styled from 'styled-components'
+import { Button, TextField } from '@mui/material'
 
 import { API_URL } from '../utils/constants'
 import user from '../reducers/user'
@@ -62,49 +63,73 @@ const Login = () => {
       }
   
     return (
-        <div>
+        <Wrapper>
           {loading && <Loader />}
             <form onSubmit={onFormSubmit}>
-              <label htmlFor="username">Username</label>
-              <input
+              <InputWrapper>
+              <TextField 
+                color="secondary"
+                required
                 id="username"
+                label="Username"
                 type="text"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
               />
-              <label htmlFor="password">Password</label>
-              <input
+              </InputWrapper>
+              <InputWrapper>
+              <TextField
+                color="secondary"
+                required
                 id="password"
-                type={showPassword ? "text" : "password"}
+                label="Password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="button" onClick={toggleShowPassword}>
+              </InputWrapper>
+              {/* <button type="button" onClick={toggleShowPassword}>
                 {showPassword ? <ClosedEyeIcon /> : <OpenEyeIcon />}
-              </button>
-              <button
+              </button> */}
+              <InputWrapper>
+              <Button 
+                variant="contained" 
+                color="secondary" 
+                component="span"
                 type="submit"
-                disabled={password.length < 5}
+                disabled={password.length < 8}
                 onClick={onFormSubmit}
               >
                 Login
-              </button>
+              </Button>
+              </InputWrapper>
             </form>
+            <InputWrapper>
           <p>
             <i>Not a member yet?</i>
           </p>
           <Link to='/register'>Sign up here!</Link>
-        </div>
+          </InputWrapper>
+        </Wrapper>
     )
   }
   
   export default Login
   
-  const ClosedEyeIcon = styled(AiFillEyeInvisible)`
-    color: #fff;
-    font-size: 22px;
-  `
-  const OpenEyeIcon = styled(AiFillEye)`
-    color: #fff;
-    font-size: 22px;
-  `
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+const InputWrapper = styled.div`
+  padding: 10px;
+`
+
+// const ClosedEyeIcon = styled(AiFillEyeInvisible)`
+//   color: #fff;
+//   font-size: 22px;
+// `
+// const OpenEyeIcon = styled(AiFillEye)`
+//   color: #fff;
+//   font-size: 22px;
+// `

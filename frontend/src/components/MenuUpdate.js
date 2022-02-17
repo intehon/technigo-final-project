@@ -67,7 +67,7 @@ const MenuUpdate = () => {
               <label htmlFor="contained-button-file">
                 <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
               <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
-                Upload
+                Choose image
               </Button>
               </label>
               {/* <label htmlFor='file'>Choose image</label>

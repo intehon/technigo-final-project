@@ -11,7 +11,7 @@ const ProfileUpdate = () => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
-  const [profile, setProfile] = useState({ name: '', email: '', role: '', username: '' })
+  const [profile, setProfile] = useState('')
   const [message, setMessage] = useState(false)
 
   const userId = useSelector((store) => store.user.userId)

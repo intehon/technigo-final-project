@@ -13,18 +13,17 @@ import AdminMenu from '../components/AdminMenu'
 import AccountMenu from '../components/AccountMenu'
 
 const Admin = () => {
-    const [showProfile, setShowProfile] = useState(false)
-    const [updateMenu, setUpdateMenu] = useState(false)
-    const [updateTheme, setUpdateTheme] = useState(false)
+    // const [updateMenu, setUpdateMenu] = useState(false)
+    // const [updateTheme, setUpdateTheme] = useState(false)
 
     const accessToken = useSelector((store) => store.user.accessToken)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const logout = () => {
-        dispatch(user.actions.setInitialState())
-    }
+    // const logout = () => {
+    //     dispatch(user.actions.setInitialState())
+    // }
 
     useEffect(() => {
         if (!accessToken) {
@@ -58,7 +57,7 @@ const Admin = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    /* max-width: 800px; */
 `
 
 const AccountMenuContainer = styled.div`

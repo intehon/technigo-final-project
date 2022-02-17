@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { useDispatch } from 'react-redux'
+
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
@@ -12,18 +14,26 @@ import PersonAdd from '@mui/icons-material/PersonAdd'
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 
+import user from '../reducers/user'
+
 import ProfileUpdate from './ProfileUpdate'
 import ShowProfile from './ShowProfile'
 
 const AccountMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [showProfile, setShowProfile] = React.useState(false)
+  const [showSettings, setShowSettings] = React.useState(false)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
-  };
+  }
   const handleClose = () => {
     setAnchorEl(null)
-  };
+  }
+  const dispatch = useDispatch()
+  const logout = () => {
+    dispatch(user.actions.setInitialState())
+  }
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -45,7 +55,7 @@ const AccountMenu = () => {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
+        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -75,26 +85,27 @@ const AccountMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem onClick={() => setShowProfile(showProfile ? false : true)}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+        {showProfile && (
+          <MenuItem>
+            <ShowProfile />
+          </MenuItem>
+        )}
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => setShowSettings(showSettings ? false : true)}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        {showSettings && (
+          <MenuItem>
+            <ProfileUpdate />
+          </MenuItem>
+        )}
+        <MenuItem onClick={logout} >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
