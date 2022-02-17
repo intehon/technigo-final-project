@@ -14,7 +14,6 @@ router.route('/roles')
 
     .post(async (req, res) => {
     const { description } = req.body
-
     try {
         const newRole = await new Role({ description }).save()
         res.status(201).json({ response: newRole, success: true })

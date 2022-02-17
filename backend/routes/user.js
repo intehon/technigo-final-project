@@ -5,7 +5,6 @@ import Role from '../models/Role.js'
 
 const router = express.Router()
 
-
 // endpoint to get users
 
 router.route('/users')
@@ -52,24 +51,5 @@ router.route('/users/:userId')
             res.status(400).json({ response: error, success: false })
         }
     })
-
-// endpoint to update user w. role and name
-
-// router.patch('/users/:userId/update', async (req, res) => {
-//     const { userId } = req.params
-//     const { role, name, email } = req.body
-
-//     try {
-//         const queriedRole = await Role.findById(role)
-//         const updatedUser = await User.findByIdAndUpdate( userId, { name, email, role: queriedRole }, { new: true })
-//         res.status(200).json({
-//             response: updatedUser,
-//             success: true
-//     })
-//     } catch (error) {
-//         res.status(400).json({ response: error, success: false })
-//     }
-// })
-
 
 export default router

@@ -15,9 +15,6 @@ const Menu = () => {
         setImgSize("600px")
       }
     }
-
-
-
     const getMenu = () => {
 
         const options = {
@@ -26,12 +23,10 @@ const Menu = () => {
               "Content-Type": "application/json",
             }
           }
-      
           fetch(API_URL('menus'), options)
           .then((res) => res.json())
           .then((json) => setMenu(json.response[0].fileUrl))
-        }
-
+    }
     useEffect(() => {
         getMenu()
     }, [])

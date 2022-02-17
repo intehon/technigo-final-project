@@ -64,7 +64,7 @@ const TestAdmin = () => {
         <ThemeUpdate />
       </TabPanel>
     </Box>
-  );
+  )
 }
 
 export default TestAdmin

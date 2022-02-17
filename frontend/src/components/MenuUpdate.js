@@ -40,7 +40,6 @@ const MenuUpdate = () => {
       }
     })
   }
-
   const handleFileChange = (e) => {
     if (e.target.files.length !== 0) {
     const file = {
@@ -52,7 +51,6 @@ const MenuUpdate = () => {
     setMenu('')
   }
 }
-
 
   return (
     <Container>
@@ -70,8 +68,6 @@ const MenuUpdate = () => {
                 Choose image
               </Button>
               </label>
-              {/* <label htmlFor='file'>Choose image</label>
-              <input type='file' name='file' ref={fileInput} onChange={handleFileChange} ></input> */}
               <TextContainer>
                 <Text>Please convert .pdf to .jpeg, .jpg or .png before proceeding</Text>
               </TextContainer>
@@ -88,7 +84,6 @@ const MenuUpdate = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 `
 
 const FormWrapper = styled.div`

@@ -1,9 +1,9 @@
-import cloudinaryFramwork from 'cloudinary'
-import multer from 'multer'
-import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import express from 'express'
 import dotenv from 'dotenv'
 import auth from '../middleware/auth.js'
+import cloudinaryFramwork from 'cloudinary'
+import multer from 'multer'
+import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
 import Menu from '../models/Menu.js'
 
@@ -19,8 +19,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
-
-
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
@@ -29,8 +27,7 @@ const storage = new CloudinaryStorage({
       transformation: [{ width: 700, height: 700, crop: 'limit' }]
     }
   })
-
-  const parser = multer({ storage })
+const parser = multer({ storage })
 
 // endpoint for menu upload
 

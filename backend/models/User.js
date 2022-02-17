@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 
-// import ROLES_LIST from '../config/roles_list'
-
 const UserSchema = new mongoose.Schema({
     username: {
       type: String,
@@ -34,11 +32,7 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Role',
       default: '620d517a466349ce0787db0a'
-    }, 
-    // role: {
-    //   type: String,
-    //   default: ROLES_LIST.Staff
-    // }
+    },
   })
 
 const User = mongoose.model('User', UserSchema)
