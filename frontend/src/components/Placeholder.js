@@ -14,7 +14,6 @@ const Placeholder = () => {
         },
       }}
     >
-      {/* <Paper variant="outlined" /> */}
       <Paper elevation={3} />
     </Box>
   )

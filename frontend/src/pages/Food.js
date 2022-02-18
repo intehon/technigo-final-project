@@ -38,7 +38,6 @@ const Wrapper = styled.div`
 
 const ImageContainer = styled.div`
     text-align: center;
-    /* max-width: 600px; */
 `
 
 const TextWrapper = styled.div`

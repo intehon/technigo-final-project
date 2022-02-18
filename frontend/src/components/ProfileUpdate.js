@@ -66,7 +66,6 @@ const ProfileUpdate = () => {
               getProfile()
             batch(() => {
               dispatch(user.actions.setName(data.response.name))
-              // dispatch(user.actions.setRole(data.response.role))
               dispatch(user.actions.setEmail(data.response.email))
               dispatch(user.actions.setUserName(data.response.username))
               dispatch(user.actions.setError(null))
@@ -86,7 +85,7 @@ const ProfileUpdate = () => {
           <form onSubmit={handleFormSubmit}>
               <div>
                   <label>
-                      Staff Name
+                      Name
                       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                   </label>
               </div>

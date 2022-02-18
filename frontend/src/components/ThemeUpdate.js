@@ -11,8 +11,6 @@ import Placeholder from './Placeholder'
 
 const ThemeUpdate = () => {
   const fileInput = useRef()
-  const nameInput = useRef()
-  const descriptionInput = useRef()
   const [image, setImage] = useState({ preview: '', data: ''})
   const [name, setName] = useState('')  
   const [description, setDescription] = useState('')
@@ -20,8 +18,6 @@ const ThemeUpdate = () => {
   const [message, setMessage] = useState(false)
 
   const accessToken = useSelector((store) => store.user.accessToken)
-
-  // const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -67,40 +63,26 @@ const ThemeUpdate = () => {
   return (
     <Container>
       {loading && <Loader />}
-      <Wrapper>
-      {!image.preview && <Placeholder />}
+        <Wrapper>
+        {!image.preview && <Placeholder />}
           {image.preview && <img src={image.preview} height='400' width='400' alt='preview'
           />}
           <FormWrapper>
             <h1>Update theme</h1>
               <form onSubmit={handleSubmit}>
-                    <TextField type="text" value={name} label="New theme name" name="name" color="secondary" onChange={(e) => setName(e.target.value)}/>
-                   <FormChild>
-                   {/* <TextareaAutosize
-                      value={description}
-                      // ref={description}
-                      label="New theme description"
-                      name="description"
-                      aria-label="empty textarea"
-                      placeholder="New theme description"
-                      color="secondary"
-                      onChange={(e) => setDescription(e.target.value)}
-                      style={{ width: 200 }}
-                    /> */}
-                    <TextField value={description} ref={descriptionInput} label="New theme description..." name='description' multiline rows={3} color="secondary" onChange={(e) => setDescription(e.target.value)} />
-                  </FormChild>
-                  {/* <label htmlFor='image'>Image</label>
-                  <input type='file' name='file' ref={fileInput} label="New theme description" onChange={handleFileChange}></input> */}
-                  <label htmlFor="contained-button-file">
-                    <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
-                    <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
-                      Choose image
-                    </Button>
+                  <TextField type="text" value={name} label="New theme name" name="name" color="secondary" onChange={(e) => setName(e.target.value)}/>
+                    <FormChild>
+                      <TextField value={description} label="New theme description..." name='description' multiline rows={3} color="secondary" onChange={(e) => setDescription(e.target.value)} />
+                    </FormChild>
+                    <label htmlFor="contained-button-file">
+                      <Input accept="image/*" id="contained-button-file" multiple type="file" ref={fileInput} onChange={handleFileChange} />
+                        <Button variant="contained" color="secondary" component="span" endIcon={<FileUploadIcon />}>
+                          Choose image
+                        </Button>
                     </label>
                   <Text>Supported files: .png, .jpg. .jpeg</Text>
                   <Button type="submit" variant="contained" color="secondary" endIcon={<SaveIcon />}>Save</Button>
-                {/* <button type='submit'>Submit</button> */}
-            </form>
+              </form>
           </FormWrapper>
         </Wrapper>
         {message && <div>Theme successfully uploaded!</div>}
@@ -111,7 +93,6 @@ const ThemeUpdate = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 `
 
 const FormWrapper = styled.div`

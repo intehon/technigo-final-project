@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { combineReducers, createStore, compose, applyMiddleware } from '@reduxjs/toolkit'
 
-
 import Main from './pages/Main'
 import About from './pages/About'
 import Food from './pages/Food'

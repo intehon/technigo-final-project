@@ -3,32 +3,18 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Navbar = () => {
+    const style = {
+        active: { color: "#808080", textDecoration: "none" },
+        notActive: { color: "#E40086", textDecoration: "underline" },
+      }
   return (
   <Container>
-         <NavLink to='/' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none'
-        })}>Home</NavLink><Text> | </Text>
-        <NavLink to='/food-and-wine' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none'
-        })}>Food and Wine</NavLink><Text> | </Text>
-        <NavLink to='/chambre' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none'
-        })}>Chambre Separee</NavLink><Text> | </Text>
-        <NavLink to='/theme' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none'
-        })}>Current Theme</NavLink><Text> | </Text>
-        <NavLink to='/about' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none'
-        })}>About Us</NavLink><Text> | </Text>
-        <NavLink to='/faq' style={({ isActive }) => ({
-            color: isActive ? '#e40086' : '#808080',
-            textDecoration: isActive ? 'underline' : 'none',
-        })}>FAQ</NavLink>
+        <NavLink to="/" style={({ isActive }) => (isActive ? style.notActive : style.active)}>Home</NavLink><Text> | </Text>
+        <NavLink to="/food-and-wine" style={({ isActive }) => (isActive ? style.notActive : style.active)}>Food and Wine</NavLink><Text> | </Text>
+        <NavLink to="/chambre" style={({ isActive }) => (isActive ? style.notActive : style.active)}>Chambre Separee</NavLink><Text> | </Text>
+        <NavLink to="/theme" style={({ isActive }) => (isActive ? style.notActive : style.active)}>Current Theme</NavLink><Text> | </Text>
+        <NavLink to="/about" style={({ isActive }) => (isActive ? style.notActive : style.active)}>About Us</NavLink><Text> | </Text>
+        <NavLink to="/faq" style={({ isActive }) => (isActive ? style.notActive : style.active)}>FAQ</NavLink>
   </Container>
   )
 }

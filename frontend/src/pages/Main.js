@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// import MainImg from '../assets/content/woodstockholm-215.jpg'
-// import SetTable from '../assets/content/woodstockholm-205.jpg'
 import SetTable from '../assets/content/woodstockholm-245.jpg'
 import {BiPhone} from 'react-icons/bi'
 
@@ -12,21 +10,21 @@ const Main = () => {
         <BackDrop>
             <Wrapper>
                 <Container>
-                        <TextContainer>
-                            <Text>Woodstockholm Matbar</Text>
-                            <Text>Mosebacke torg 9</Text>
-                            <Text>Monday - Sunday 17 – 23</Text>
-                            <PhoneSpan><PhoneIcon /><Link href="tel:+468369399" aria-label="+ 4 6. 8. 3 6 9. 3 9 9."> +46(0)8-369 399</Link></PhoneSpan>
-                            <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
-                        </TextContainer>
-                        <Button 
-                        href="https://app.bokabord.se/reservation/?hash=6f4e22917c2a3e8aefdd1332215dbb5c" rel="noopener noreferrer" target="_blank"
-                        >Reservations</Button>
-                        <Button 
-                        href="https://gansub.com/s/9J7kb0MD/" rel="noopener noreferrer" target="_blank"
-                        >Newsletter</Button>
-                    </Container>
-        </Wrapper>
+                    <TextContainer>
+                        <Text>Woodstockholm Matbar</Text>
+                        <Text>Mosebacke torg 9</Text>
+                        <Text>Monday - Sunday 17 – 23</Text>
+                        <PhoneSpan><PhoneIcon /><Link href="tel:+468369399" aria-label="+ 4 6. 8. 3 6 9. 3 9 9."> +46(0)8-369 399</Link></PhoneSpan>
+                        <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
+                    </TextContainer>
+                    <Button 
+                    href="https://app.bokabord.se/reservation/?hash=6f4e22917c2a3e8aefdd1332215dbb5c" rel="noopener noreferrer" target="_blank"
+                    >Reservations</Button>
+                    <Button 
+                    href="https://gansub.com/s/9J7kb0MD/" rel="noopener noreferrer" target="_blank"
+                    >Newsletter</Button>
+                </Container>
+            </Wrapper>
        </BackDrop>
     </>
     )

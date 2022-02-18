@@ -71,55 +71,55 @@ const Signup = () => {
         {loading && <Loader />}
         <form onSubmit={onFormSubmit}>
           <InputWrapper>
-          <TextField 
-            color="secondary"
-            required
-            id="username"
-            label="Username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+            <TextField 
+              color="secondary"
+              required
+              id="username"
+              label="Username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </InputWrapper>
           <InputWrapper>
-          <TextField
-            color="secondary"
-            required
-            id="email"
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            <TextField
+              color="secondary"
+              required
+              id="email"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </InputWrapper>
           <InputWrapper>
-          <TextField
-            color="secondary"
-            required
-            id="password"
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <TextField
+              color="secondary"
+              required
+              id="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </InputWrapper>
           <InputWrapper>
-          <Button 
-          variant="contained" 
-          color="secondary" 
-          component="span"
-          type="submit"
-          disabled={password.length < 8}
-          onClick={onFormSubmit}
-          >
+            <Button 
+            variant="contained" 
+            color="secondary" 
+            component="span"
+            type="submit"
+            disabled={password.length < 8}
+            onClick={onFormSubmit}
+            >
             Submit
-          </Button>
+            </Button>
           </InputWrapper>
         </form>
         <InputWrapper>
-        <p><i>Already a member?</i></p>
-        <Link to="/login">
-            Sign in here!
-        </Link>
+          <p><i>Already a member?</i></p>
+          <Link to="/login">
+              Sign in here!
+          </Link>
         </InputWrapper>   
   </Wrapper>
   )
