@@ -18,6 +18,13 @@ mongoose.Promise = Promise
 const port = process.env.PORT || 8080
 const app = express()
 
+// main endpoint
+
+app.get('/', (req, res) => {
+	res.json({status: 'alive'})
+})
+
+
 // Add middlewares to enable cors and json body parsing
 
 app.use(cors())
@@ -31,13 +38,6 @@ app.use((req, res, next) => {
 		? next()
 	  : res.status(503).json({ error: 'Cannot connect to server' })
 	})
-
-// main endpoint
-
-app.get('/', (req, res) => {
-	res.json({status: 'alive'})
-})
-
 
 // Start the server
 app.listen(port, () => {
