@@ -11,7 +11,7 @@ const About = () => {
         <Wrapper>
             <TextWrapper>
                 <TextContainer>
-                    Woo dstockholm Bistro is a place where flavours and meetings are created without regard to traditional boundaries. It is a place where we want everyone to feel welcome and be able to enjoy locally and sustainably produced food and drinks in a warm and beautiful environment. Chef Elias and his team work with a dynamic menu that changes regularly.
+                    Woodstockholm Bistro is a place where flavours and meetings are created without regard to traditional boundaries. It is a place where we want everyone to feel welcome and be able to enjoy locally and sustainably produced food and drinks in a warm and beautiful environment. Chef Elias and his team work with a dynamic menu that changes regularly.
                 </TextContainer>
                 <TextContainer>
                     Tables, chairs, lamps and artistic installations are all part of the experience we want to offer.
