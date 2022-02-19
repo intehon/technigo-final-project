@@ -7,7 +7,6 @@ import Box from '@mui/material/Box'
 
 import MenuUpdate from './MenuUpdate'
 import ThemeUpdate from './ThemeUpdate'
-import AccountMenu from './AccountMenu'
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props

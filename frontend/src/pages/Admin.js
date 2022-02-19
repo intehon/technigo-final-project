@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -9,7 +9,6 @@ import AccountMenu from '../components/AccountMenu'
 const Admin = () => {
     const accessToken = useSelector((store) => store.user.accessToken)
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
 

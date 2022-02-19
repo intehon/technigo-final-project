@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { BiPhone } from 'react-icons/bi'
 
 import SetTable from '../assets/content/woodstockholm-245.jpg'
 
@@ -13,7 +14,7 @@ const Main = () => {
                         <Text>Woodstockholm Matbar</Text>
                         <Text>Mosebacke torg 9</Text>
                         <Text>Monday - Sunday 17 – 23</Text>
-                        <PhoneSpan><Link href="tel:+468369399" aria-label="+ 4 6. 8. 3 6 9. 3 9 9."> +46(0)8-369 399</Link></PhoneSpan>
+                        <PhoneSpan><PhoneIcon /><Link href="tel:+468369399" aria-label="+ 4 6. 8. 3 6 9. 3 9 9."> +46(0)8-369 399</Link></PhoneSpan>
                         <i>For chambre inquiries: <Link href="reservations@woodstockholm.com">reservations@woodstockholm.com</Link></i>
                     </TextContainer>
                     <Button 
@@ -92,6 +93,11 @@ const Link = styled.a`
     &:hover {
         color: #e40086;
     }
+`
+
+const PhoneIcon = styled(BiPhone)`
+    color: #000;    
+    font-size: 20px;
 `
 
 const PhoneSpan = styled.span`

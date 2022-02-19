@@ -9,7 +9,6 @@ import Loader from './Loader'
 const ProfileUpdate = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState('')
   const [message, setMessage] = useState(false)
@@ -30,7 +29,7 @@ const ProfileUpdate = () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-            setProfile({name: data.response.name, email: data.response.email, role: data.response.role, username: data.response.username})
+            setProfile({name: data.response.name, email: data.response.email, role: data.response.role })
         } else {
             setProfile(null)
         }
@@ -54,7 +53,7 @@ const ProfileUpdate = () => {
       body: JSON.stringify({
         name: name,
         email: email,
-        username: username,
+        username: profile.username,
         role: profile.role
       })
     }
