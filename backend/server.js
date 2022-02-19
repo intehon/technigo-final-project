@@ -31,11 +31,11 @@ app.use(routes)
 
 //middleware to check if everything is ok before moving on (1 = all is good)
 
-app.use((req, res, next) => {
-	return (mongoose.connection.readyState === 1) 
-		? next()
-	  : res.status(503).json({ error: 'Cannot connect to server' })
-	})
+// app.use((req, res, next) => {
+// 	return (mongoose.connection.readyState === 1) 
+// 		? next()
+// 	  : res.status(503).json({ error: 'Cannot connect to server' })
+// 	})
 
 // Start the server
 app.listen(port, () => {
