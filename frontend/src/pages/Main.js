@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import SetTable from '../assets/content/woodstockholm-245.jpg'
-import {BiPhone} from 'react-icons/bi'
+import { BiPhone } from 'react-icons/bi'
 
 const Main = () => {
     return (
