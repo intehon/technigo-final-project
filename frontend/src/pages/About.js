@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import SetTable from '../assets/content/woodstockholm-205.jpg'
-import Plate from '../assets/content/woodstockholm-188.jpg'
-import Interior from '../assets/content/woodstockholm-256.jpg'
-import Window from '../assets/content/woodstockholm-253.jpg'
+import SetTable from '../assets/content/about1.png'
+import Plate from '../assets/content/about2.png'
+import Interior from '../assets/content/about3.png'
+import Window from '../assets/content/about4.png'
 
 const About = () => {
     return (
         <Wrapper>
             <TextWrapper>
                 <TextContainer>
-                    Woodstockholm Bistro is a place where flavours and meetings are created without regard to traditional boundaries. It is a place where we want everyone to feel welcome and be able to enjoy locally and sustainably produced food and drinks in a warm and beautiful environment. Chef Elias and his team work with a dynamic menu that changes regularly.
+                    Woo dstockholm Bistro is a place where flavours and meetings are created without regard to traditional boundaries. It is a place where we want everyone to feel welcome and be able to enjoy locally and sustainably produced food and drinks in a warm and beautiful environment. Chef Elias and his team work with a dynamic menu that changes regularly.
                 </TextContainer>
                 <TextContainer>
                     Tables, chairs, lamps and artistic installations are all part of the experience we want to offer.
