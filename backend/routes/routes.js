@@ -11,10 +11,10 @@ import roleRouter from './role.js'
 const apiRouter = express()
 
 apiRouter.use(loginRouter)
-apiRouter.use(registerRouter)
+apiRouter.use(registerRouter)   
 apiRouter.use(menuRouter)
 apiRouter.use(themeRouter)
-// apiRouter.use(auth)
+apiRouter.use(auth)
 apiRouter.use(userRouter)
 apiRouter.use(roleRouter)
 
