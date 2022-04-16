@@ -32,8 +32,8 @@ const MenuUpdate = () => {
       body: formData
     })
     .then((res) => res.json())
-    .then((json) => {
-      if (json.success) {
+    .then((data) => {
+      if (data.success) {
         setLoading(false)
         setMessage(true)
         setMenu('')
