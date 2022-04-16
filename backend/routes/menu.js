@@ -31,7 +31,7 @@ const parser = multer({ storage })
 
 // endpoint for menu upload
 
-router.post('/menus', parser.single('file'), async (req, res) => {
+router.post('/menus', auth, parser.single('file'), async (req, res) => {
   try { 
       const menu = await new Menu({ name: req.body.name, fileUrl: req.file.path, fileId: req.file.filename }).save()
       res.json({
