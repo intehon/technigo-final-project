@@ -24,15 +24,15 @@ const Theme = () => {
   return (
     <Wrapper>
         <HeaderContainer>
-          {theme && <Header>{theme.response[0].name}</Header>}
+          {theme && <Header>{theme.response[0]?.name}</Header>}
         </HeaderContainer>
         <ContentWrapper>
           <ImageContainer>
-              {theme && <ThemeImage src={theme.response[0].imageUrl} alt="current theme" />}
+              {theme && <ThemeImage src={theme.response[0]?.imageUrl} alt="current theme" />}
           </ImageContainer>
           <TextWrapper>
             <TextContainer>
-                {theme && <p>{theme.response[0].description}</p>}
+                {theme && <p>{theme.response[0]?.description}</p>}
             </TextContainer>
           </TextWrapper>
       </ContentWrapper>
