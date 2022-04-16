@@ -15,9 +15,9 @@ const router = express.Router()
 
 const cloudinary = cloudinaryFramwork.v2
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_KEY,
-  api_secret: process.env.CLOUD_SECRET
+  cloud_name: 'dabppspye',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 })
 const storage = new CloudinaryStorage({
     cloudinary,
@@ -27,17 +27,13 @@ const storage = new CloudinaryStorage({
       transformation: [{ width: 700, height: 700, crop: 'limit' }]
     }
   })
-const parser = multer({ storage })  
+const parser = multer({ storage })
 
 // endpoint for menu upload
 
 router.post('/menus', auth, parser.single('file'), async (req, res) => {
   try { 
-      const menu = await new Menu({ 
-        name: req.body.name, 
-        fileUrl: req.file.path, 
-        fileId: req.file.filename 
-      }).save()
+      const menu = await new Menu({ name: req.body.name, fileUrl: req.file.path, fileId: req.file.filename }).save()
       res.json({
         response: menu,
         success: true,
