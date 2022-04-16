@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import auth from '../middleware/auth.js'
-// import cloudinaryFramwork from 'cloudinary'
+import cloudinaryFramwork from 'cloudinary'
 import { v2 as cloudinary } from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
