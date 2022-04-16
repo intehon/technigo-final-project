@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 // Add middlewares to enable cors and json body parsing
 
-app.use(cors({origin: new URL('https://woodstockholm-api.herokuapp.com'), credentials: true}))
+app.use(cors())
 app.use(express.json())
 app.use(routes)
 

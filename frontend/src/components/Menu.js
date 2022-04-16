@@ -25,7 +25,7 @@ const Menu = () => {
           }
           fetch(API_URL('menus'), options)
           .then((res) => res.json())
-          .then((json) => setMenu(json.response[0].fileUrl))
+          .then((json) => setMenu(json.response[0]?.fileUrl))
     }
     useEffect(() => {
         getMenu()
