@@ -7,9 +7,9 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
 import Menu from '../models/Menu.js'
 
-const router = express.Router()
-
 dotenv.config()
+
+const router = express.Router()
 
 // cloudinary setup
 
