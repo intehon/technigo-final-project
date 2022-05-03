@@ -1,5 +1,5 @@
 import express from 'express'
-// import auth from '../middleware/auth.js'
+import auth from '../middleware/auth.js'
 
 import menuRouter from './menu.js'
 import themeRouter from './theme.js'
@@ -14,7 +14,7 @@ apiRouter.use(loginRouter)
 apiRouter.use(registerRouter)   
 apiRouter.use(menuRouter)
 apiRouter.use(themeRouter)
-// apiRouter.use(auth)
+apiRouter.use(auth)
 apiRouter.use(userRouter)
 apiRouter.use(roleRouter)
 
