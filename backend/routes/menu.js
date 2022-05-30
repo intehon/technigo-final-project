@@ -33,7 +33,11 @@ const parser = multer({ storage })
 
 router.post('/menus', auth, parser.single('file'), async (req, res) => {
   try { 
-      const menu = await new Menu({ name: req.body.name, fileUrl: req.file.path, fileId: req.file.filename }).save()
+      const menu = await new Menu({ 
+        name: req.body.name, 
+        fileUrl: req.file.path, 
+        fileId: req.file.filename 
+      }).save()
       res.json({
         response: menu,
         success: true,
