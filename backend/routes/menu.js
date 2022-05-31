@@ -4,6 +4,7 @@ import auth from '../middleware/auth.js'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import { v2 as cloudinary } from 'cloudinary'
 
 import Menu from '../models/Menu.js'
 

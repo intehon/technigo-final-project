@@ -4,6 +4,7 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import auth from '../middleware/auth.js'
+import { v2 as cloudinary } from 'cloudinary'
 
 import Theme from '../models/Theme.js'
 
