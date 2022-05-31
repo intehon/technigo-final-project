@@ -8,6 +8,10 @@ import loginRouter from './login.js'
 import registerRouter from './register.js'
 import roleRouter from './role.js'
 
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 const apiRouter = express()
 
 apiRouter.use(loginRouter)
