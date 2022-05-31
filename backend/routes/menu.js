@@ -16,8 +16,8 @@ const router = express.Router()
 const cloudinary = cloudinaryFramwork.v2
 cloudinary.config({
   cloud_name: 'dabppspye',
-  api_key: '464526529995492',
-  api_secret: 'yd_jSzIBrnFVo_3IPsHBf1XQBew'
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 })
 const storage = new CloudinaryStorage({
     cloudinary,
