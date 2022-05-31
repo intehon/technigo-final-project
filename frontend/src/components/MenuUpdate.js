@@ -37,8 +37,10 @@ const MenuUpdate = () => {
         setLoading(false)
         setMessage(true)
         setMenu('')
-      }
-    })
+      } else { 
+          alert("An error occurred")
+        }
+      })
   }
   const handleFileChange = (e) => {
     if (e.target.files.length !== 0) {
