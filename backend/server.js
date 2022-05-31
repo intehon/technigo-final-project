@@ -8,7 +8,10 @@ import routes from './routes/routes.js'
 dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUrl, { 
+	useNewUrlParser: true, 
+	useUnifiedTopology: true 
+})
 mongoose.Promise = Promise 
 
 // Defines the port the app will run on. Defaults to 8080, but can be 

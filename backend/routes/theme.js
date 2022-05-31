@@ -4,7 +4,6 @@ import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import cloudinaryFramwork from 'cloudinary'
 import multer from 'multer'
 import auth from '../middleware/auth.js'
-import { v2 as cloudinary } from 'cloudinary'
 
 import Theme from '../models/Theme.js'
 
@@ -12,14 +11,11 @@ const router = express.Router()
 
 dotenv.config()
 
-var stack = new Error().stack
-console.log(stack)
-
 // Coudinary setup
 
-const cloudinarySetup = cloudinaryFramwork.v2
-cloudinarySetup.config({
-  cloud_name: 'dabppspye',
+const cloudinary = cloudinaryFramwork.v2
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
