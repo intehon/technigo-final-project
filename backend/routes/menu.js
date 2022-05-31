@@ -14,8 +14,8 @@ const router = express.Router()
 
 // cloudinary setup
 
-const cloudinary = cloudinaryFramwork.v2
-cloudinary.config({
+const cloudinarySetup = cloudinaryFramwork.v2
+cloudinarySetup.config({
   cloud_name: 'dabppspye',
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
