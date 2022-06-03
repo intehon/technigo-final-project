@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
-
-import { API_URL } from '../utils/constants'
+import MenuImg from '../assets/content/temathai.jpg'
 
 const Menu = () => {
-    const [menu, setMenu] = useState('')
     const [imgSize, setImgSize] = useState("600px")
 
     const toggleImgSize = () => {
@@ -15,26 +13,10 @@ const Menu = () => {
         setImgSize("600px")
       }
     }
-    const getMenu = () => {
-
-        const options = {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            }
-          }
-          fetch(API_URL('menus'), options)
-          .then((res) => res.json())
-          .then((json) => setMenu(json.response[0]?.fileUrl))
-    }
-    useEffect(() => {
-        getMenu()
-    }, [])
-
 
   return (
     <ImageContainer onClick={toggleImgSize}>
-     <Image style={{ width: imgSize }} src={menu} alt="Menu" />
+     <Image style={{ width: imgSize }} src={MenuImg} alt="Menu" />
     </ImageContainer>
   )
 }

@@ -5,9 +5,6 @@ import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
-import MenuUpdate from './MenuUpdate'
-import ThemeUpdate from './ThemeUpdate'
-
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props
 
@@ -57,10 +54,10 @@ const TestAdmin = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <MenuUpdate />
+        <p>~coming soon~</p>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ThemeUpdate />
+        <p>~coming soon~</p>
       </TabPanel>
     </Box>
   )
