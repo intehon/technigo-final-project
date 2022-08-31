@@ -39,10 +39,15 @@ const BackDrop = styled.main`
     background-image: url(${SetTable});
     background-size: cover;
     background-position: center;
-    width: 700px;
-    height: 800px;
+    width: 350px;
+    height: 500px;
+    /* margin: 0 auto; */
     border-style: double;
     border-color: pink;
+    @media (min-width: 768px) {
+    width: 768px;
+    height: 800px;
+    }
 `
 
 const Wrapper = styled.div`
@@ -60,7 +65,7 @@ const Container = styled.div`
 const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 5px;
     align-items: center;
     letter-spacing: 1px;
     background: white;
@@ -69,6 +74,9 @@ const TextContainer = styled.div`
     font-size: 16px;
     border-style: double;
     border-color: pink;
+    @media (min-width: 768px) {
+    padding: 20px;
+    }
 `
 
 const Button = styled.a`

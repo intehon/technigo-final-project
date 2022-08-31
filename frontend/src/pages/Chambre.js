@@ -16,7 +16,12 @@ const Chambre = () => {
 
 const Wrapper = styled.div`
     display: flex;
-    max-width: 600px;
+    @media (min-width: 576px) {
+    width: 576px;
+     }
+    @media (min-width: 768px) {
+    width: 768px;
+    }
 `
 
 const TextContainer = styled.div`

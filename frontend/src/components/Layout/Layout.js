@@ -24,7 +24,18 @@ const Backdrop = styled.div`
 
 const Main = styled.main`
   display: flex;
-  margin: 50px 150px;
+  width: 350px;
+  /* margin: 5px 10px; */
+  /* margin: 0 auto; */
+  @media (min-width: 768px) {
+    width: 600px;
+    margin: 30px 50px;
+  }
+  @media (min-width: 992px) {
+    width: 700px;
+    margin: 50px 150px;
+    justify-content: center;
+  }
 `
 
 export default Layout

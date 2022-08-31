@@ -21,10 +21,21 @@ export const Navbar = () => {
 
 const Container = styled.nav`
     display: inline;
-    justify-content: flex-end;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.5px;
+    padding: 15px 25px 5px;
+    width: 300px;
+    @media (min-width: 768px) {
+    width: 400px;
+    /* margin: 0 auto; */
+  }
+  @media (min-width: 992px) {
+    width: 700px;
     padding: 25px 25px 5px;
+    justify-content: center;
+  }
 `
 
 const Text = styled.p`

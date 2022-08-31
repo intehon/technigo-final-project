@@ -12,7 +12,11 @@ const FAQ = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    max-width: 300px;
+    @media (min-width: 768px) {
     max-width: 600px;
+    }
 `
 
 const TextContainer = styled.div`

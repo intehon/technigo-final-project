@@ -30,7 +30,14 @@ const Theme = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 900px;
+    max-width: 300px;
+    margin: 0 auto;
+    @media (min-width: 768px) {
+    width: 700px;
+    }
+    @media (min-width: 992px) {
+      max-width: 700px;
+    }
 `
 
 const ContentWrapper = styled.div`
@@ -55,8 +62,14 @@ const ImageContainer = styled.div`
 
 const ThemeImage = styled.img`
   display: inline-block;
-  max-width: 550px;
+  max-width: 300px;
   border-radius: 1%;
+    @media (min-width: 768px) {
+    max-width: 600px;
+    }
+    @media (min-width: 992px) {
+      max-width: 600px;
+    }
 `
 
 const HeaderContainer = styled.div`

@@ -33,7 +33,11 @@ const About = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    @media (min-width: 768px) {
     max-width: 600px;
+    }
 `
 
 const TextWrapper = styled.div`
@@ -49,11 +53,15 @@ const TextContainer = styled.div`
 
 const ImageContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
     text-align: center;
     max-width: 600px;
     padding-bottom: 10px;
+    @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    }
 `
 
 const Image = styled.img`

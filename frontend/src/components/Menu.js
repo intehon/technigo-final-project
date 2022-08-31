@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import MenuImg from '../assets/content/temathai.jpg'
 
 const Menu = () => {
-    const [imgSize, setImgSize] = useState("600px")
+    const [imgSize, setImgSize] = useState("300px")
 
     const toggleImgSize = () => {
-      if (imgSize === "600px") {
+      if (imgSize === "300px") {
         setImgSize("1100px")
       } else {
-        setImgSize("600px")
+        setImgSize("300px")
       }
     }
 
@@ -24,6 +24,7 @@ const Menu = () => {
 const ImageContainer = styled.div`
     display: flex;
     text-align: center;
+    margin: 0 auto;
 `
 
 const Image = styled.img`

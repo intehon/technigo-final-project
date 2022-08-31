@@ -10,6 +10,7 @@ const Food = () => {
             <Wrapper>
                 <ImageContainer>
                     {Menu && <Menu />}
+                    <p><i>Example menu (click to enlarge)</i></p>
                 </ImageContainer>
                 <TextWrapper>
                     <TextContainer>
@@ -34,6 +35,12 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-content: center;
+    /* justify-content: center; */
+    width: 300px;
+    margin: 0 auto;
+    @media (min-width: 768px) {
+    width: 700px;
+    }
 `
 
 const ImageContainer = styled.div`

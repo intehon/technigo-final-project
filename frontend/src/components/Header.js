@@ -15,6 +15,15 @@ const Header = () => {
 const HeaderBox = styled.div`
     display: grid;
     place-items: center;
+    @media (min-width: 576px) {
+        width: 576px;
+        justify-content: center
+    }
+    @media (min-width: 768px) {
+    width: 768px;
+    justify-content: center;
+    margin: 0 auto;
+  }
 `
 
 const HeaderLink = styled.a`
