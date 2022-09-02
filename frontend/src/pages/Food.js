@@ -35,7 +35,6 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-content: center;
-    /* justify-content: center; */
     width: 300px;
     margin: 0 auto;
     @media (min-width: 768px) {

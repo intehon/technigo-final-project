@@ -21,6 +21,7 @@ const FooterContainer = styled.div`
 
 const IconContainer = styled.div`
     display: flex;
+    padding: 10px;
 `
 
 const InstagramIcon = styled(BsInstagram)`

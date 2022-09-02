@@ -41,7 +41,6 @@ const BackDrop = styled.main`
     background-position: center;
     width: 350px;
     height: 500px;
-    /* margin: 0 auto; */
     border-style: double;
     border-color: pink;
     @media (min-width: 768px) {

@@ -111,6 +111,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
 `
 const InputWrapper = styled.div`
   padding: 10px;

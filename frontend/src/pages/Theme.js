@@ -44,7 +44,6 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     grid-gap: 1rem;
-    align-items: center; // Maybe remove this?
 `
 
 const TextContainer = styled.div`
@@ -52,7 +51,6 @@ const TextContainer = styled.div`
     flex-direction: column;
     padding: 2px;
     letter-spacing: 1px;
-    /* max-width: 800px; */
 `
 
 const ImageContainer = styled.div`

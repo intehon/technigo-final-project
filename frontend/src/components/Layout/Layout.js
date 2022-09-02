@@ -25,8 +25,6 @@ const Backdrop = styled.div`
 const Main = styled.main`
   display: flex;
   width: 350px;
-  /* margin: 5px 10px; */
-  /* margin: 0 auto; */
   @media (min-width: 768px) {
     width: 600px;
     margin: 30px 50px;
